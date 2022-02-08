@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,13 +23,14 @@
 			비밀번호 : <%= pass %><br/>			
 			이름 : <%= name %><br/>			
 			주소 : <%= addr %><br/>			
-			성별 : <%= gender %><br/>			
-			취미 : 
+			성별 : <%= (gender.equals("1")) ? "남자" : "여자" %><br/>			
+			취미 : <%= Arrays.toString(hobbies) %><br />
 			<%
 				for(String hobby : hobbies){
 					out.print(hobby+", ");
 				}
-			%><br/>			
+			%>
+			<br/>			
 		</p>
 		
 		<a href="../Sub3/1.Request.jsp">뒤로가기</a>	
