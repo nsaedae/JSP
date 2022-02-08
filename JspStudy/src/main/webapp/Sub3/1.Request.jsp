@@ -8,6 +8,19 @@
 			날짜 : 2022/02/08
 			이름 : 김철학
 			내용 : Jsp 내장객체 실습하기
+			
+			request 내장객체
+			 - 클라이언트의 요청 정보를 갖는 객체
+			 - 클라이언트의 전송 데이터(Parameter)를 수신 기능을 제공
+			
+			요청방식 Get
+			 - 기본적인 서버 요청방식
+			 - 서버에 페이지나 데이터를 요청하는 요청방식
+			 - 전송 데이터가 주소에 노출 
+			 
+			요청방식 Post
+			 - 서버에 데이터를 전송하면서 처리를 요청하는 요청방식
+			 - 전송 데이터를 요청메세지에 삽입해서 전송하기 때문에 데이터 노출 안됨
 		-->
 	</head>
 	<body>
@@ -48,10 +61,32 @@
 					<td><input type="text" name="name"/></td>
 				</tr>
 				<tr>
+					<td>주소</td>
+					<td>
+						<select name="addr">
+							<option>서울</option>
+							<option>대전</option>
+							<option>대구</option>
+							<option>부산</option>
+							<option>광주</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td>성별</td>
 					<td>
 						<label><input type="radio" name="gender" value="1"/>남</label>
 						<label><input type="radio" name="gender" value="2"/>여</label>
+					</td>
+				</tr>
+				<tr>
+					<td>취미</td>
+					<td>
+						<label><input type="checkbox" name="hobby" value="등산"/>등산하기</label>
+						<label><input type="checkbox" name="hobby" value="독서"/>독서하기</label>
+						<label><input type="checkbox" name="hobby" value="여행"/>여행하기</label>
+						<label><input type="checkbox" name="hobby" value="운동"/>운동하기</label>
+						<label><input type="checkbox" name="hobby" value="영화"/>영화보기</label>
 					</td>
 				</tr>
 				<tr>
@@ -60,16 +95,35 @@
 					</td>
 				</tr>			
 			</table>
-		
-		
 		</form>
 		
-		
-		
-		
-		
-		
-				
+		<h4>request 주요기능</h4>
+		<table border="1">
+			<tr>
+				<td>헤더정보</td>
+				<td><%= request.getHeader("User-Agent") %></td>
+			</tr>
+			<tr>
+				<td>통신규약</td>
+				<td><%= request.getProtocol() %></td>
+			</tr>
+			<tr>
+				<td>서버이름</td>
+				<td><%= request.getServerName() %></td>
+			</tr>
+			<tr>
+				<td>요청주소</td>
+				<td><%= request.getRequestURL() %></td>
+			</tr>
+			<tr>
+				<td>요청경로</td>
+				<td><%= request.getRequestURI() %></td>
+			</tr>
+			<tr>
+				<td>클라이언트 IP주소</td>
+				<td><%= request.getRemoteAddr() %></td>
+			</tr>
+		</table>
 		
 	</body>
 </html>
