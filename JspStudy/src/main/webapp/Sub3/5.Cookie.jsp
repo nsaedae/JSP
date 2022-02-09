@@ -3,23 +3,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>4.Session</title>
+		<title>5.Cookie</title>
 		<!-- 
 			날짜 : 2022/02/09
 			이름 : 김철학
 			내용 : JSP 내장객체 실습하기
 			
-			session
-			 - 최초 요청에서 마지막 요청까지의 전체 시간
-			 - 클라이언트가 서버로 요청할때 서버에 기록되는 클라이언트의 정보 테이블(Session Table)
-			 - 서버는 각 클라이언트에 대한 고유번호(Session ID)를 부여
+			Cookie
+			 - 클라이언트와 서버간의 식별을 위해 사용되는 조각파일
+			 - 쿠키는 서버에서 생성하고 클라이언트 전송
+			 - 클라이언트는 전송된 쿠키를 보관하고 해당 서버로 다시 전송
 		-->
 	</head>
 	<body>
-		<h3>4.Session 실습하기</h3>
-		
-		<h4>로그인</h4>
-		<form action="../proc/sessionProc.jsp" method="post">
+		<h3>5.Cookie</h3>
+		<form action="../proc/cookieProc.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
@@ -36,21 +34,6 @@
 				</tr>
 			</table>			
 		</form>
-		
-		
 				
-		
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
