@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title>5.Cookie</title>
-		<!-- 
+		<!--
 			날짜 : 2022/02/09
 			이름 : 김철학
 			내용 : JSP 내장객체 실습하기

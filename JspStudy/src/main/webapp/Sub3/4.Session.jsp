@@ -18,7 +18,6 @@
 	<body>
 		<h3>4.Session 실습하기</h3>
 		
-		<h4>로그인</h4>
 		<form action="../proc/sessionProc.jsp" method="post">
 			<table border="1">
 				<tr>
