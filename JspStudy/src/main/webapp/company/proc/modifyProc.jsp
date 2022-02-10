@@ -10,7 +10,6 @@
 	String hp   = request.getParameter("hp");
 	String pos  = request.getParameter("pos");
 	String dep  = request.getParameter("dep");
-	
 		
 	// 데이터베이스 작업(PrepareStatement)
 	try{
