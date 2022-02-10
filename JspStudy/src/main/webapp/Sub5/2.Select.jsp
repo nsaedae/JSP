@@ -76,7 +76,7 @@
 					<td><%= ub.getHp() %></td>
 					<td><%= ub.getAge() %></td>
 					<td>
-						<a href="#">삭제</a>
+						<a href="./4.Delete.jsp?uid=<%= ub.getUid() %>">삭제</a>
 						<a href="./3.Update.jsp?uid=<%= ub.getUid() %>">수정</a>
 					</td>			
 				</tr>
