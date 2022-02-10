@@ -91,8 +91,8 @@
 					</td>
 					<td><%= mb.getRdate().substring(0, 10) %></td>
 					<td>
-						<a href="./modify.jsp">수정</a>
-						<a href="./delete.jsp">삭제</a>
+						<a href="./modify.jsp?uid=<%= mb.getUid() %>">수정</a>
+						<a href="./delete.jsp?uid=<%= mb.getUid() %>">삭제</a>
 					</td>			
 				</tr>
 			<% } %>

@@ -1,4 +1,44 @@
+<%@page import="bean.MemberBean"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	// 전송 데이터 수신
+	request.setCharacterEncoding("utf-8");
+	String uid = request.getParameter("uid");
+	
+	// 데이터베이스 작업(Statement)
+	MemberBean mb = null;
+	
+	try{
+		String host = "jdbc:mysql://chhak.or.kr:3306/test";
+		String user = "test";
+		String pass = "1234";
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection(host, user, pass);
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM `Member` WHERE `uid`='"+uid+"'");
+		
+		if(rs.next()){
+			mb = new MemberBean();
+			mb.setUid(rs.getString(1));
+			mb.setName(rs.getString(2));
+			mb.setHp(rs.getString(3));
+			mb.setPos(rs.getString(4));
+			mb.setDep(rs.getInt(5));
+			mb.setRdate(rs.getString(6));
+		}
+		conn.close();
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,19 +48,19 @@
 	<body>
 		<h3>직원수정</h3>
 		<a href="./list.jsp">직원목록</a>
-		<form action="#">
+		<form action="./proc/modifyProc.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="uid" readonly/></td>
+					<td><input type="text" name="uid" readonly value="<%= mb.getUid() %>"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name"/></td>
+					<td><input type="text" name="name" value="<%= mb.getName() %>"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type="text" name="hp"/></td>
+					<td><input type="text" name="hp" value="<%= mb.getHp() %>"/></td>
 				</tr>
 				<tr>
 					<td>직급</td>
