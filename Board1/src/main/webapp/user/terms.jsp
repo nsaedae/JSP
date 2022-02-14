@@ -35,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <title>약관</title>
-    <link rel="stylesheet" href="/Board1/css/style.css"/>    
+    <link rel="stylesheet" href="/Board1/css/style.css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -63,11 +63,10 @@
                 </tr>
             </table>
             <div>
-                <a href="./login.html">취소</a>
-                <a href="./register.html">다음</a>
+                <a href="/Board1/user/login.jsp">취소</a>
+                <a href="/Board1/user/register.jsp">다음</a>
             </div>
         </section>
     </div>
-    
 </body>
 </html>
