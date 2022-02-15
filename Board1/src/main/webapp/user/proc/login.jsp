@@ -1,3 +1,5 @@
+<%@page import="kr.co.board1.db.Sql"%>
+<%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="kr.co.board1.bean.UserBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -10,18 +12,10 @@
 	String uid  = request.getParameter("uid");
 	String pass = request.getParameter("pass");
 	
-	
 	// 데이터베이스 처리
-	String host = "jdbc:mysql://chhak.or.kr:3306/test";
-	String user = "test";
-	String pw   = "1234";
-	
 	try{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pw);
-		
-		String sql = "SELECT * FROM `Board_user` WHERE `uid`=? AND `pass`=PASSWORD(?);";
-		PreparedStatement psmt = conn.prepareStatement(sql);
+		Connection conn = DBConfig.getInstance().getConnection();
+		PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_USER);
 		psmt.setString(1, uid);
 		psmt.setString(2, pass);
 		
