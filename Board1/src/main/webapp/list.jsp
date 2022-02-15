@@ -2,6 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	UserBean sessUser = (UserBean) session.getAttribute("sessUser");
+	
+	// 로그인하지 않고 글목록 요청하면 로그인 페이지로 이동시킴
+	if(sessUser == null){
+		response.sendRedirect("/Board1/user/login.jsp?success=102");
+		return; // <-- 프로그램 실행 여기까지
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
