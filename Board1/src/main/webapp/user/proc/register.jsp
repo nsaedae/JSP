@@ -15,7 +15,7 @@
 	String addr1 = request.getParameter("addr1");
 	String addr2 = request.getParameter("addr2");
 	String regip = request.getRemoteAddr(); // 클라이언트 시스템 IP
-
+	
 	String host = "jdbc:mysql://chhak.or.kr:3306/test";
 	String user = "test";
 	String pass = "1234";
@@ -25,7 +25,7 @@
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		String sql  = "INSERT INTO `Board_user` SET ";
 			   sql += "`uid`=?,";
-			   sql += "`pass`=?,";
+			   sql += "`pass`=PASSWORD(?),";
 			   sql += "`name`=?,";
 			   sql += "`nick`=?,";
 			   sql += "`email`=?,";
