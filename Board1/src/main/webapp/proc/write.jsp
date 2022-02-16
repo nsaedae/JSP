@@ -36,8 +36,9 @@
 		PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
 		psmt.setString(1, title);
 		psmt.setString(2, content);
-		psmt.setString(3, uid);
-		psmt.setString(4, regip);
+		psmt.setInt(3, fname == null ? 0 : 1);
+		psmt.setString(4, uid);
+		psmt.setString(5, regip);
 		psmt.executeUpdate();
 		
 		// 방금 INSERT한 글 번호 조회

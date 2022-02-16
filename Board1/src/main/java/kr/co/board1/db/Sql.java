@@ -24,6 +24,7 @@ public class Sql {
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
 												+ "`title`=?,"
 												+ "`content`=?,"
+												+ "`file`=?,"
 												+ "`uid`=?,"
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
