@@ -20,7 +20,7 @@
         <section id="board" class="write">
             <h3>글쓰기</h3>
             <article>
-                <form action="/Board1/proc/write.jsp" method="post">
+                <form action="/Board1/proc/write.jsp" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="uid" value="<%= sessUser.getUid() %>" />
                     <table>
                         <tr>
