@@ -19,13 +19,22 @@ public class Sql {
 	
 	public static final String SELECT_USER = "SELECT * FROM `Board_user` WHERE `uid`=? AND `pass`=PASSWORD(?)";
 	
-	
-	
-	
-
-	
-	
 	// board
-	
+	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
+												+ "`title`=?,"
+												+ "`content`=?,"
+												+ "`uid`=?,"
+												+ "`regip`=?,"
+												+ "`rdate`=NOW()";
+										
 
 }
+
+
+
+
+
+
+
+
+
