@@ -48,11 +48,6 @@
 		lastPageNum = total / 10 + 1;
 	}
 	
-	
-	// 데이터베이스 작업
-	List<ArticleBean> articles = new ArrayList<>();
-	
-	
 	int currentPg = 1;
 	
 	if(pg != null){
@@ -60,6 +55,19 @@
 	}
 	
 	int start = (currentPg - 1) * 10;
+	int pageStartNum = total - start;
+	
+	int groupCurrent = (int)Math.ceil(currentPg / 10.0);
+	int groupStart = (groupCurrent - 1) * 10 + 1;  
+	int groupEnd   = groupCurrent * 10;
+	
+	if(groupEnd > lastPageNum){
+		groupEnd = lastPageNum;
+	}
+	
+	
+	// 데이터베이스 작업
+	List<ArticleBean> articles = new ArrayList<>();
 	
 	try{
 		Connection conn = DBConfig.getInstance().getConnection();
@@ -118,7 +126,7 @@
                     </tr>
                     <% for(ArticleBean article : articles){ %>
                     <tr>
-                        <td><%= article.getId() %></td>
+                        <td><%= pageStartNum-- %></td>
                         <td><a href="#"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
                         <td><%= article.getNick() %></td>
                         <td><%= article.getRdate().substring(2, 10) %></td>
@@ -130,13 +138,18 @@
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
-                <a href="#" class="prev">이전</a>
+            	
+            	<% if(groupStart > 1){ %>
+                	<a href="/Board1/list.jsp?pg=<%= groupStart-1 %>" class="prev">이전</a>
+                <% } %>
                 
-                <% for(int p=1 ; p<=lastPageNum ; p++){ %>
-                	<a href="/Board1/list.jsp?pg=<%= p %>" class="num"><%= p %></a>
+                <% for(int p=groupStart ; p<=groupEnd ; p++){ %>
+                	<a href="/Board1/list.jsp?pg=<%= p %>" class="num <%= (currentPg == p) ? "current":"" %>"><%= p %></a>
 				<% } %>                         
                                 
-                <a href="#" class="next">다음</a>
+                <% if(groupEnd < lastPageNum){ %>                
+                	<a href="/Board1/list.jsp?pg=<%= groupEnd+1 %>" class="next">다음</a>
+                <% } %>
             </div>
 
             <!-- 글쓰기 버튼 -->
