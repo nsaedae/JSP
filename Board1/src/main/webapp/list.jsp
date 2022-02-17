@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.db.ArticleDao"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
@@ -23,23 +24,7 @@
 	String pg = request.getParameter("pg");
 	
 	// 페이지 번호 작업
-	int total = 0;
-	
-	try{
-		Connection conn = DBConfig.getInstance().getConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_ID);
-		
-		if(rs.next()){
-			total = rs.getInt(1);
-		}
-		
-		conn.close();
-		
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	
+	int total = ArticleDao.getInstance().selectCountId();
 	int lastPageNum = 0;
 	
 	if(total % 10 == 0){
@@ -65,40 +50,8 @@
 		groupEnd = lastPageNum;
 	}
 	
-	
-	// 데이터베이스 작업
-	List<ArticleBean> articles = new ArrayList<>();
-	
-	try{
-		Connection conn = DBConfig.getInstance().getConnection();
-		PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
-		psmt.setInt(1, start);
-		
-		ResultSet rs = psmt.executeQuery();
-		
-		while(rs.next()){
-			ArticleBean article = new ArticleBean();
-			article.setId(rs.getInt(1));
-			article.setParent(rs.getInt(2));
-			article.setComment(rs.getInt(3));
-			article.setCate(rs.getString(4));
-			article.setTitle(rs.getString(5));
-			article.setContent(rs.getString(6));
-			article.setFile(rs.getInt(7));
-			article.setHit(rs.getInt(8));
-			article.setUid(rs.getString(9));
-			article.setRegip(rs.getString(10));
-			article.setRdate(rs.getString(11));
-			article.setNick(rs.getString(12));
-				
-			articles.add(article);
-		}
-		
-		conn.close();
-		
-	}catch(Exception e){
-		e.printStackTrace();
-	}
+	// 글목록 가져오기
+	List<ArticleBean> articles = ArticleDao.getInstance().selectArticles(start);
 %>
 <!DOCTYPE html>
 <html lang="en">
