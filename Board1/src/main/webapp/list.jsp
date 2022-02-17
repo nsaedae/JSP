@@ -40,6 +40,7 @@
 			article.setUid(rs.getString(9));
 			article.setRegip(rs.getString(10));
 			article.setRdate(rs.getString(11));
+			article.setNick(rs.getString(12));
 				
 			articles.add(article);
 		}
@@ -56,7 +57,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글목록</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/Board1/css/style.css">
 </head>
 <body>
     <div id="wrapper">
@@ -79,7 +80,7 @@
                     <tr>
                         <td><%= article.getId() %></td>
                         <td><a href="#"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
-                        <td><%= article.getUid() %></td>
+                        <td><%= article.getNick() %></td>
                         <td><%= article.getRdate().substring(2, 10) %></td>
                         <td><%= article.getHit() %></td>
                     </tr>
