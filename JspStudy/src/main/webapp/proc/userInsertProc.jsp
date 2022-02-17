@@ -12,13 +12,16 @@
 	String age  = request.getParameter("age");
 
 	// 데이터베이스 정보
-	String host = "jdbc:mysql://chhak.or.kr:3306/test";
-	String user = "test";
+	String host = "jdbc:mysql://database-1.cg0kckknqkbn.ap-northeast-2.rds.amazonaws.com:3306/board";
+	String user = "tester";
 	String pass = "1234";
 	
 	try{
 		// 1단계 - JDBC 드라이버 로드
-		Class.forName("com.mysql.jdbc.Driver");
+		// Mysql 5.x 버전
+		Class.forName("com.mysql.jdbc.Driver");		
+		// Mysql 8.x 버전
+		//Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		// 2단계 - 데이터베이스 접속
 		Connection conn = DriverManager.getConnection(host, user, pass);

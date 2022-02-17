@@ -1,9 +1,7 @@
-<%@page import="com.google.gson.JsonObject"%>
-<%@page import="com.google.gson.Gson"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
-<%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
@@ -18,8 +16,6 @@
 	String user = "test";
 	String pass = "1234";
 	
-	int result = 0;
-	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host, user, pass);
@@ -31,18 +27,13 @@
 		psmt.setString(4, pos);
 		psmt.setString(5, dep);
 		
-		result = psmt.executeUpdate();
+		psmt.executeUpdate();
 		conn.close();
 				
 	}catch(Exception e){
 		e.printStackTrace();
 	}
 	
-	// 결과 json 출력
-	JsonObject json = new JsonObject();
-	json.addProperty("result", result);
-	
-	String jsonData = json.toString();
-	
-	out.print(jsonData);
+	// 직원목록 이동
+	response.sendRedirect("../list.jsp");
 %>

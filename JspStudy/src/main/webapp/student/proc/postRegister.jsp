@@ -7,11 +7,12 @@
 <%
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
-	String uid  = request.getParameter("uid");
-	String name = request.getParameter("name");
-	String hp   = request.getParameter("hp");
-	String pos  = request.getParameter("pos");
-	String dep  = request.getParameter("dep");
+	String sid    = request.getParameter("sid");
+	String name   = request.getParameter("name");
+	String gender = request.getParameter("gender");
+	String hp     = request.getParameter("hp");
+	String grade  = request.getParameter("grade");
+	String regdate = request.getParameter("regdate");
 	
 	// 데이터베이스 작업(PrepareStatement 사용)
 	String host = "jdbc:mysql://chhak.or.kr:3306/test";
@@ -23,13 +24,14 @@
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		String sql = "INSERT INTO `Member` VALUES (?,?,?,?,?,NOW());";
+		String sql = "INSERT INTO `Students` VALUES (?,?,?,?,?,?);";
 		PreparedStatement psmt = conn.prepareStatement(sql);
-		psmt.setString(1, uid);
+		psmt.setString(1, sid);
 		psmt.setString(2, name);
-		psmt.setString(3, hp);
-		psmt.setString(4, pos);
-		psmt.setString(5, dep);
+		psmt.setString(3, gender);
+		psmt.setString(4, hp);
+		psmt.setString(5, grade);
+		psmt.setString(6, regdate);
 		
 		result = psmt.executeUpdate();
 		conn.close();
@@ -38,11 +40,11 @@
 		e.printStackTrace();
 	}
 	
-	// 결과 json 출력
-	JsonObject json = new JsonObject();
-	json.addProperty("result", result);
+	Gson gson = new Gson();
 	
-	String jsonData = json.toString();
+	JsonObject jsonObj = new JsonObject();
+	jsonObj.addProperty("result", result);
 	
-	out.print(jsonData);
+	String jsonStr = gson.toJson(jsonObj);
+	out.print(jsonStr);	
 %>
