@@ -15,6 +15,7 @@
 		<script>
 			$(function(){
 				
+				// 직원 목록 불러오기 버튼클릭
 				$('button').click(function(){
 					
 					$.get('./proc/getList.jsp', function(data){
@@ -27,7 +28,29 @@
 							$('table tr:last-child').append('<td>'+member.pos+'</td>');
 							$('table tr:last-child').append('<td>'+member.dep+'</td>');							
 							$('table tr:last-child').append('<td>'+member.rdate.substring(2, 10)+'</td>');							
-							$('table tr:last-child').append("<td><a href='#'>삭제</a></td>");							
+							$('table tr:last-child').append("<td><a href='"+member.uid+"'>삭제</a></td>");							
+						}
+					});
+				});
+				
+				// 각 직원 삭제링크 클릭(동적 이벤트 생성)
+				$(document).on('click', 'table a', function(e){
+					e.preventDefault();
+					
+					let tag = $(this);
+					let uid = tag.attr('href');
+					let url = './proc/delete.jsp?uid='+uid;
+					
+					$.get(url, function(data){
+						
+						if(data.result == 1){
+							alert('선택한 직원을 삭제했습니다.');
+							
+							// 해당 직원 페이지에서 동적삭제
+							tag.parent().parent().remove();
+						
+						}else{
+							alert('선택한 직원을 삭제 할 수 없습니다.');
 						}
 					});
 				});
