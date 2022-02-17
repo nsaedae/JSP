@@ -70,7 +70,6 @@
 		
 		oriFile.renameTo(newFile);
 		
-		
 		// 파일테이블 Insert
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();

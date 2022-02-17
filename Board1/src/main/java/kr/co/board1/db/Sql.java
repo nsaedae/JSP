@@ -21,6 +21,9 @@ public class Sql {
 	
 	// board
 	public static final String SELECT_MAX_ID = "SELECT MAX(`id`) FROM `Board_article`";
+	
+	public static final String SELECT_ARTICLES = "SELECT * FROM `Board_article`";
+	
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
 												+ "`title`=?,"
 												+ "`content`=?,"

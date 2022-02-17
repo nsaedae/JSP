@@ -1,3 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.board1.bean.ArticleBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.co.board1.db.Sql"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="kr.co.board1.bean.UserBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -8,6 +16,40 @@
 		response.sendRedirect("/Board1/user/login.jsp?success=102");
 		return; // <-- 프로그램 실행 여기까지
 	}
+	
+	
+	// 데이터베이스 작업
+	List<ArticleBean> articles = new ArrayList<>();
+	
+	try{
+		Connection conn = DBConfig.getInstance().getConnection();
+		PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+		
+		ResultSet rs = psmt.executeQuery();
+		
+		while(rs.next()){
+			ArticleBean article = new ArticleBean();
+			article.setId(rs.getInt(1));
+			article.setParent(rs.getInt(2));
+			article.setComment(rs.getInt(3));
+			article.setCate(rs.getString(4));
+			article.setTitle(rs.getString(5));
+			article.setContent(rs.getString(6));
+			article.setFile(rs.getInt(7));
+			article.setHit(rs.getInt(8));
+			article.setUid(rs.getString(9));
+			article.setRegip(rs.getString(10));
+			article.setRdate(rs.getString(11));
+				
+			articles.add(article);
+		}
+		
+		conn.close();
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +75,15 @@
                         <th>날짜</th>
                         <th>조회</th>
                     </tr>
+                    <% for(ArticleBean article : articles){ %>
                     <tr>
-                        <td>1</td>
-                        <td><a href="./view.html">테스트 제목입니다.</a>&nbsp;[3]</td>
-                        <td>길동이</td>
-                        <td>20-05-12</td>
-                        <td>12</td>
+                        <td><%= article.getId() %></td>
+                        <td><a href="#"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
+                        <td><%= article.getUid() %></td>
+                        <td><%= article.getRdate().substring(2, 10) %></td>
+                        <td><%= article.getHit() %></td>
                     </tr>
+                    <% } %>
                 </table>
             </article>
 
