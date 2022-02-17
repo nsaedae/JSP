@@ -1,3 +1,4 @@
+<%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
 <%@page import="java.util.List"%>
@@ -17,13 +18,53 @@
 		return; // <-- 프로그램 실행 여기까지
 	}
 	
+	// 전송 데이터 수신
+	request.setCharacterEncoding("utf-8");
+	String pg = request.getParameter("pg");
+	
+	// 페이지 번호 작업
+	int total = 0;
+	
+	try{
+		Connection conn = DBConfig.getInstance().getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_ID);
+		
+		if(rs.next()){
+			total = rs.getInt(1);
+		}
+		
+		conn.close();
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	int lastPageNum = 0;
+	
+	if(total % 10 == 0){
+		lastPageNum = total / 10;
+	}else{
+		lastPageNum = total / 10 + 1;
+	}
+	
 	
 	// 데이터베이스 작업
 	List<ArticleBean> articles = new ArrayList<>();
 	
+	
+	int currentPg = 1;
+	
+	if(pg != null){
+		currentPg = Integer.parseInt(pg);
+	}
+	
+	int start = (currentPg - 1) * 10;
+	
 	try{
 		Connection conn = DBConfig.getInstance().getConnection();
 		PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+		psmt.setInt(1, start);
 		
 		ResultSet rs = psmt.executeQuery();
 		
@@ -50,7 +91,6 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,9 +131,11 @@
             <!-- 페이지 네비게이션 -->
             <div class="paging">
                 <a href="#" class="prev">이전</a>
-                <a href="#" class="num current">1</a>                
-                <a href="#" class="num">2</a>                
-                <a href="#" class="num">3</a>                
+                
+                <% for(int p=1 ; p<=lastPageNum ; p++){ %>
+                	<a href="/Board1/list.jsp?pg=<%= p %>" class="num"><%= p %></a>
+				<% } %>                         
+                                
                 <a href="#" class="next">다음</a>
             </div>
 
