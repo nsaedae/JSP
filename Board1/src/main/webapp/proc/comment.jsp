@@ -14,7 +14,6 @@
 	article.setUid(uid);
 	article.setRegip(regip);
 	
-	
 	// 댓글 Insert
 	ArticleDao dao = ArticleDao.getInstance();
 	dao.insertComment(article);
