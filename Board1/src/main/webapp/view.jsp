@@ -1,4 +1,13 @@
+<%@page import="kr.co.board1.bean.ArticleBean"%>
+<%@page import="kr.co.board1.db.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String id = request.getParameter("id");
+	
+	// 글 가져오기
+	ArticleBean article = ArticleDao.getInstance().selectArticle(id);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +22,9 @@
             <table>
                 <tr>
                     <td>제목</td>
-                    <td><input type="text" name="title" value="제목입니다." readonly/></td>
+                    <td><input type="text" name="title" value="<%= article.getTitle() %>" readonly/></td>
                 </tr>
+                <% if(article.getFile() > 0){ %>
                 <tr>
                     <td>첨부파일</td>
                     <td>
@@ -22,17 +32,18 @@
                         <span>7회 다운로드</span>
                     </td>
                 </tr>
+                <% } %>
                 <tr>
                     <td>내용</td>
                     <td>
-                        <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                        <textarea name="content" readonly><%= article.getContent() %></textarea>
                     </td>
                 </tr>
             </table>
             <div>
                 <a href="#" class="btnDelete">삭제</a>
                 <a href="./modify.html" class="btnModify">수정</a>
-                <a href="./list.html" class="btnList">목록</a>
+                <a href="/Board1/list.jsp" class="btnList">목록</a>
             </div>  
             
             <!-- 댓글리스트 -->
