@@ -103,6 +103,34 @@ public class ArticleDao {
 		return total;
 	}
 	
+	public FileBean selectFile(String fid) {
+		
+		FileBean fb = null;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_FILE);
+			psmt.setString(1, fid);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				fb = new FileBean();
+				fb.setFid(rs.getInt(1));
+				fb.setParent(rs.getInt(2));
+				fb.setoName(rs.getString(3));
+				fb.setnName(rs.getString(4));
+				fb.setDownload(rs.getInt(5));
+				fb.setRdate(rs.getString(6));
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fb;
+	}
+	
 	public ArticleBean selectArticle(String id) {
 		
 		ArticleBean article = null;

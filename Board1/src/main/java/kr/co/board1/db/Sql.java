@@ -22,7 +22,7 @@ public class Sql {
 	// board
 	public static final String SELECT_MAX_ID   = "SELECT MAX(`id`) FROM `Board_article`";
 	public static final String SELECT_COUNT_ID = "SELECT COUNT(`id`) FROM `Board_article`";
-	
+	public static final String SELECT_FILE     = "SELECT * FROM `Board_file` WHERE `fid`=?";
 	public static final String SELECT_ARTICLE  = "SELECT * FROM `Board_article` AS a "
 												+ "LEFT JOIN `Board_file` AS b "
 												+ "ON a.id=b.parent "

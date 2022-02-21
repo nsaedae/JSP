@@ -1,7 +1,16 @@
+<%@page import="kr.co.board1.bean.UserBean"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
 <%@page import="kr.co.board1.db.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	UserBean sessUser = (UserBean) session.getAttribute("sessUser");
+	
+	// 로그인하지 않고 글목록 요청하면 로그인 페이지로 이동시킴
+	if(sessUser == null){
+		response.sendRedirect("/Board1/user/login.jsp?success=102");
+		return; // <-- 프로그램 실행 여기까지
+	}
+
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	
@@ -28,7 +37,7 @@
                 <tr>
                     <td>첨부파일</td>
                     <td>
-                        <a href="#"><%= article.getFb().getoName() %></a>
+                        <a href="/Board1/proc/download.jsp?fid=<%= article.getFb().getFid() %>"><%= article.getFb().getoName() %></a>
                         <span><%= article.getFb().getDownload() %>회 다운로드</span>
                     </td>
                 </tr>
