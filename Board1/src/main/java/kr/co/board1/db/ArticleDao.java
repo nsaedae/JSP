@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.board1.bean.ArticleBean;
+import kr.co.board1.bean.FileBean;
 
 public class ArticleDao {
 	
@@ -125,6 +126,17 @@ public class ArticleDao {
 				article.setUid(rs.getString(9));
 				article.setRegip(rs.getString(10));
 				article.setRdate(rs.getString(11));
+				
+				// 파일정보
+				FileBean fb = new FileBean();
+				fb.setFid(rs.getInt(12));
+				fb.setParent(rs.getInt(13));
+				fb.setoName(rs.getString(14));
+				fb.setnName(rs.getString(15));
+				fb.setDownload(rs.getInt(16));
+				fb.setRdate(rs.getString(17));
+									
+				article.setFb(fb);
 			}
 			conn.close();
 			
