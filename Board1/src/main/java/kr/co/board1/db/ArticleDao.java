@@ -213,6 +213,20 @@ public class ArticleDao {
 		return articles;
 	}
 	
+	public void updateFileCount(int fid) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_COUNT);
+			psmt.setInt(1, fid);
+			
+			psmt.executeUpdate();
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
 	public void updateArticle() {}
 	public void deleteArticle() {}
 		

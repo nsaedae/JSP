@@ -11,7 +11,11 @@
 	String fid = request.getParameter("fid");
 	
 	// 파일정보 가져오기
-	FileBean fb = ArticleDao.getInstance().selectFile(fid);
+	ArticleDao dao = ArticleDao.getInstance();
+	FileBean fb = dao.selectFile(fid);
+	
+	// 파일 다운로드 카운트 +1
+	dao.updateFileCount(fb.getFid());
 	
 	// 파일 다운로드 response 헤더수정	
 	response.setContentType("application/octet-stream");

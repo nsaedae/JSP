@@ -47,6 +47,9 @@ public class Sql {
 											+ "`oName`=?,"
 											+ "`nName`=?,"
 											+ "`rdate`=NOW()";
+	
+	
+	public static final String UPDATE_FILE_COUNT = "UPDATE `Board_file` SET `download` = `download` + 1 WHERE `fid`=?";
 										
 	
 }
