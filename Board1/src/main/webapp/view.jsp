@@ -15,14 +15,19 @@
 	String id = request.getParameter("id");
 	
 	// 글 가져오기
-	ArticleBean article = ArticleDao.getInstance().selectArticle(id);
+	ArticleDao dao = ArticleDao.getInstance();
+	ArticleBean article = dao.selectArticle(id);
+	
+	// 조회수 +1
+	dao.updateArticleHit(article.getId());
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>글보기</title>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="/Board1/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -77,7 +82,9 @@
             <!-- 댓글입력폼 -->
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
-                <form action="#">
+                <form action="/Board1/proc/comment.jsp" method="post">
+                	<input type="hidden" name="id"  value="<%= article.getId() %>"/>
+                	<input type="hidden" name="uid" value="<%= sessUser.getUid() %>"/>
                     <textarea name="comment"></textarea>
                     <div>
                         <a href="#" class="btnCancel">취소</a>

@@ -61,6 +61,28 @@ public class ArticleDao {
 		return selectMaxId();
 	}
 	
+	public void insertComment(ArticleBean article) {
+		
+		try{
+			Connection conn = DBConfig.getInstance().getConnection();
+			
+			// INSERT ผ๖วเ
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+			psmt.setInt(1, article.getParent());
+			psmt.setString(2, article.getContent());
+			psmt.setString(3, article.getUid());
+			psmt.setString(4, article.getRegip());
+			psmt.executeUpdate();
+			
+			conn.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	public int selectMaxId() {
 		
 		int id = 0;
@@ -218,6 +240,34 @@ public class ArticleDao {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_COUNT);
 			psmt.setInt(1, fid);
+			
+			psmt.executeUpdate();
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void updateArticleHit(int id) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
+			psmt.setInt(1, id);
+			
+			psmt.executeUpdate();
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void updateArticleComment(String id) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT);
+			psmt.setString(1, id);
 			
 			psmt.executeUpdate();
 			conn.close();

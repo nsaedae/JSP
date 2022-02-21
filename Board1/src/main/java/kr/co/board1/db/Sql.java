@@ -42,6 +42,13 @@ public class Sql {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
+	public static final String INSERT_COMMENT = "INSERT INTO `Board_article` SET "
+												+ "`parent`=?,"
+												+ "`content`=?,"
+												+ "`uid`=?,"
+												+ "`regip`=?,"
+												+ "`rdate`=NOW()";
+	
 	public static final String INSERT_FILE = "INSERT INTO `Board_file` SET "
 											+ "`parent`=?,"
 											+ "`oName`=?,"
@@ -49,7 +56,9 @@ public class Sql {
 											+ "`rdate`=NOW()";
 	
 	
-	public static final String UPDATE_FILE_COUNT = "UPDATE `Board_file` SET `download` = `download` + 1 WHERE `fid`=?";
+	public static final String UPDATE_FILE_COUNT  = "UPDATE `Board_file` SET `download` = `download` + 1 WHERE `fid`=?";
+	public static final String UPDATE_ARTICLE_HIT = "UPDATE `Board_article` SET `hit` = `hit` + 1 WHERE `id`=?";
+	public static final String UPDATE_ARTICLE_COMMENT = "UPDATE `Board_article` SET `comment` = `comment` + 1 WHERE `id`=?";
 										
 	
 }
