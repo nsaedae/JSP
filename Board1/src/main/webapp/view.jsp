@@ -74,10 +74,13 @@
                         <span><%= comment.getRdate().substring(2, 10) %></span>
                     </span>
                     <textarea name="comment" readonly><%= comment.getContent() %></textarea>
-                    <div>
-                        <a href="#">삭제</a>
-                        <a href="#">수정</a>
-                    </div>
+                    
+                    <% if(sessUser.getUid().equals(comment.getUid())){ %>
+	                    <div>
+	                        <a href="/Board1/proc/deleteComment.jsp?id=<%= comment.getId() %>&parent=<%= comment.getParent() %>">삭제</a>
+	                        <a href="#">수정</a>
+	                    </div>
+                    <% } %>
                 </article>
                 <% } %>
                 

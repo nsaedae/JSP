@@ -269,8 +269,6 @@ public class ArticleDao {
 		return comments;
 	}
 	
-	
-	
 	public void updateFileCount(int fid) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -299,10 +297,19 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticleComment(String id) {
+	public void updateArticleComment(String id, boolean isPlus) {
+		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
-			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT);
+			
+			PreparedStatement psmt = null;
+			
+			if(isPlus) {
+				psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_PLUS);
+			}else {
+				psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_MINUS);
+			}
+			
 			psmt.setString(1, id);
 			
 			psmt.executeUpdate();
@@ -315,6 +322,36 @@ public class ArticleDao {
 	
 	public void updateArticle() {}
 	public void deleteArticle() {}
+	
+	public void deleteComment(String id) {
+		// ¥Ò±€ ªË¡¶
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+			
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
