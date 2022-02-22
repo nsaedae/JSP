@@ -32,6 +32,72 @@
     <title>글보기</title>
     <link rel="stylesheet" href="/Board1/css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    
+    	$(function(){
+    		
+    		// 댓글 삭제
+    		$('.commentDelete').click(function(){
+    			
+    			let isOk = confirm('정말 삭제 하시겠습니까?');
+    			
+    			if(isOk){
+    				return true;	
+    			}else{
+    				return false;
+    			}
+    		});
+    		
+    		// 댓글 수정모드 전환
+    		$('.commentModify').click(function(e){
+    			e.preventDefault();
+    			
+    			let tag = $(this);    			
+    			let textarea = tag.parent().prev();
+    			
+    			tag.prev().hide();
+    			tag.next().show();
+    			tag.hide();
+    			
+    			textarea.attr('readonly', false).focus();
+    			textarea.css({'background':'white', 'outline':'1px solid gray'});
+    		});
+    		
+    		// 댓글 수정완료
+    		$('.commentModifyComplete').click(function(e){
+    			e.preventDefault();
+    			
+    			let tag = $(this);    			
+    			let textarea = tag.parent().prev();    			 			
+    			
+    			let content = textarea.val();
+    			let id = tag.attr('data-id');
+    			
+    			let jsonData = {"content": content, "id": id};
+    			
+    			
+    			$.ajax({
+    				url: '/Board1/proc/updateComment.jsp',
+    				type: 'post',
+    				data: jsonData,
+    				dataType: 'json',
+    				success: function(data){
+    					
+    					if(data.result == 1){
+    						alert('댓글을 수정 했습니다.');
+    						// 수정완료 모드로 전환
+    						tag.hide();
+    						tag.prev().show();
+    						tag.prev().prev().show();
+    						textarea.attr('readonly', true);
+    						textarea.css({'background':'transparent', 'outline':'none'});
+    					}
+    				}
+    			});
+    		});
+    	});
+    
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -77,8 +143,9 @@
                     
                     <% if(sessUser.getUid().equals(comment.getUid())){ %>
 	                    <div>
-	                        <a href="/Board1/proc/deleteComment.jsp?id=<%= comment.getId() %>&parent=<%= comment.getParent() %>">삭제</a>
-	                        <a href="#">수정</a>
+	                        <a class="commentDelete" href="/Board1/proc/deleteComment.jsp?id=<%= comment.getId() %>&parent=<%= comment.getParent() %>">삭제</a>
+	                        <a href="#" class="commentModify">수정</a>
+	                        <a href="#" data-id="<%= comment.getId() %>" class="commentModifyComplete">수정완료</a>
 	                    </div>
                     <% } %>
                 </article>
