@@ -5,8 +5,56 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <link rel="stylesheet" href="/Board1/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/Board1/js/zipcode.js"></script>
+	<script>
+		
+		// 최종 유효성 검사에 사용될 상태변수
+		let isUidOk   = false;
+		let isPassOk  = false;
+		let isNameOk  = false;
+		let isNickOk  = false;
+		let isEmailOk = false;
+		let isHpOk    = false;
+	
+		$(function(){			
+			// 아이디 중복체크
+			$('input[name=uid]').focusout(function(){
+				
+				let uid = $(this).val();
+				let jsonData = {"uid": uid};
+				
+				
+				$.ajax({
+					url: '/Board1/user/proc/checkUid.jsp',
+					type: 'get',
+					data: jsonData,
+					dataType: 'json',
+					success: function(data){
+						
+						if(data.result > 0){
+							alert('이미 사용중인 아이디 입니다.');
+						}else{
+							alert('사용 가능한 아이디 입니다.');
+						}
+						
+						
+					}
+				});
+				
+				
+				
+			});
+			
+			// 비밀번호 유효성 검사
+			// 이름 유효성 검사
+			// 닉네임 중복체크
+			// 이메일 중복체크
+			// 휴대폰 중복체크
+		});
+	</script>
+	
 </head>
 <body>
     <div id="wrapper">
