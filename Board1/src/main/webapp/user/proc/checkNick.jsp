@@ -3,10 +3,10 @@
 <%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	String uid = request.getParameter("uid");
+	String nick = request.getParameter("nick");
 	
-	// 아이디 여부확인
-	int count = UserDao.getInstance().selectUserCount(uid, 1);
+	// 닉네임 여부확인
+	int count = UserDao.getInstance().selectUserCount(nick, 2);
 	
 	// 결과값 리턴
 	JsonObject json = new JsonObject();

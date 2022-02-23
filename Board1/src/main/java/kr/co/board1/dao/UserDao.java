@@ -20,14 +20,23 @@ public class UserDao {
 	// 기본 CRUD 메서드
 	public void insertUser() {}
 	
-	public int selectUserCount(String uid) {
+	public int selectUserCount(String info, int what) {
 		
 		int count = 0;
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
-			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_USER_COUNT);
-			psmt.setString(1, uid);
+			PreparedStatement psmt = null; 
+			if(what == 1) {
+				psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
+			}else if(what == 2) {
+				psmt = conn.prepareStatement(Sql.SELECT_COUNT_NICK);
+			}else if(what == 3) {
+				psmt = conn.prepareStatement(Sql.SELECT_COUNT_EMAIL);
+			}else if(what == 4) {
+				psmt = conn.prepareStatement(Sql.SELECT_COUNT_HP);
+			}
+			psmt.setString(1, info);
 			
 			ResultSet rs = psmt.executeQuery();
 			if(rs.next()) {
