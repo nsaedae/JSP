@@ -3,7 +3,6 @@
 <%@page import="bean.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.mysql.cj.protocol.Resultset"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
