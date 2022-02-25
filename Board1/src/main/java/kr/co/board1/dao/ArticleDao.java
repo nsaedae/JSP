@@ -11,6 +11,7 @@ import kr.co.board1.bean.ArticleBean;
 import kr.co.board1.bean.FileBean;
 import kr.co.board1.db.DBConfig;
 import kr.co.board1.db.Sql;
+import kr.co.board1.log.MyLog;
 
 public class ArticleDao {
 	
@@ -200,7 +201,7 @@ public class ArticleDao {
 	public List<ArticleBean> selectArticles(int start) {
 		
 		List<ArticleBean> articles = new ArrayList<>();
-		
+		MyLog.getInstance().info("selectArticles...");
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
@@ -230,6 +231,7 @@ public class ArticleDao {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			MyLog.getInstance().error(e.getMessage());
 		}
 		
 		return articles;

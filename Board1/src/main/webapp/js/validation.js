@@ -2,7 +2,7 @@
  * 
  */
  // Validation 수행(유효성 검증)
- // 데이터 형식을 검사하기 위한 정규표현식(Regular Expression)
+ // 데이터 형식을 검사하기 위한 정규표현식(Regular Expression) <-- 인터넷으로 정규식 검색해서 사용하기
 let reUid  = /^[a-z]+[a-z0-9]{3,9}$/;
 let rePass = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{5,}$/;
 let reName = /^[가-힣]{2,10}$/;
