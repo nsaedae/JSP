@@ -20,7 +20,7 @@
                 <a href="/Farmstory1">HOME |</a>
                 <a href="/Farmstory1/user/login.jsp">로그인 |</a>
                 <a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
-                <a href="#">고객센터</a>
+                <a href="/Farmstory1/board/list.jsp?cate=community&type=qna">고객센터</a>
             </p>
             <img src="/Farmstory1/img/head_txt_img.png" alt="3만원 이상 무료배송"/>
             

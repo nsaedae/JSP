@@ -19,13 +19,13 @@
           </div>
 
           <div class="quick">
-              <a href="#"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
-              <a href="#"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
+              <a href="/Farmstory1/board/list.jsp?cate=community&type=menu"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
+              <a href="/Farmstory1/board/list.jsp?cate=community&type=chef"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
           </div>
 
           <div class="latest">
               <div>
-                  <a href="#"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
+                  <a href="/Farmstory1/board/list.jsp?cate=croptalk&type=grow"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
                   <img src="./img/main_latest1_img.jpg" alt="이미지"/>
                   <table border="0">
                       <tr>
@@ -56,7 +56,7 @@
                   </table>
               </div>
               <div>
-                  <a href="#"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
+                  <a href="/Farmstory1/board/list.jsp?cate=croptalk&type=school"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
                   <img src="./img/main_latest2_img.jpg" alt="이미지"/>
                   <table border="0">
                       <tr>
@@ -87,7 +87,7 @@
                   </table>
               </div>
               <div>
-                  <a href="#"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
+                  <a href="/Farmstory1/board/list.jsp?cate=croptalk&type=story"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
                   <img src="./img/main_latest3_img.jpg" alt="이미지"/>
                   <table border="0">
                       <tr>
