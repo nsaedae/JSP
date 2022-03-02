@@ -64,7 +64,42 @@ public class UserDao {
 		
 		return tb;
 	}
-	public void selectUser() {}
+	public UserBean selectUser(String uid, String pass) {
+		
+		UserBean ub = null; // 선언
+		
+		try{
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_USER);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()){
+				// 일치하는 회원이 있으면
+				ub = new UserBean(); // 생성
+				ub.setUid(rs.getString(1));
+				ub.setPass(rs.getString(2));
+				ub.setName(rs.getString(3));
+				ub.setNick(rs.getString(4));
+				ub.setEmail(rs.getString(5));
+				ub.setHp(rs.getString(6));
+				ub.setGrade(rs.getInt(7));
+				ub.setZip(rs.getString(8));
+				ub.setAddr1(rs.getString(9));
+				ub.setAddr2(rs.getString(10));
+				ub.setRegip(rs.getString(11));
+				ub.setRdate(rs.getString(12));
+			}
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return ub;
+	}
+	
 	public void selectUsers() {}
 	public void updateUser() {}
 	public void deleteUser() {}
