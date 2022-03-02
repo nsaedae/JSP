@@ -9,7 +9,7 @@ import kr.co.farmstory1.db.DBConfig;
 import kr.co.farmstory1.db.Sql;
 
 public class UserDao {
-	// ΩÃ±€≈Ê ∞¥√º
+	// Ïã±Í∏ÄÌÜµ Í∞ùÏ≤¥
 	private static UserDao instance = new UserDao();
 	
 	public static UserDao getInstance() {
@@ -18,7 +18,7 @@ public class UserDao {
 	
 	private UserDao() {}
 	
-	// ±‚∫ª CRUD
+	// Í∏∞Î≥∏ CRUD
 	public void insertUser() {}
 	public TermsBean selectTerms() {
 		
