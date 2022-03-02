@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
-	if(sessUser == null){
-		// 로그인을 안한 경우
-		response.sendRedirect("/Farmstory1/user/login.jsp?success=103");
-		return;
-	}
-	
 	request.setCharacterEncoding("utf-8");
 	String cate = request.getParameter("cate");
 	String type = request.getParameter("type");
+	
+	if(sessUser == null){
+		// 로그인을 안한 경우
+		response.sendRedirect("/Farmstory1/user/login.jsp?success=103&cate="+cate+"&type="+type);
+		return;
+	}
 	
 	pageContext.include("./inc/_"+cate+".jsp");
 %>
