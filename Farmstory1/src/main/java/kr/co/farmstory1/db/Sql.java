@@ -44,6 +44,7 @@ public class Sql {
 												+ "WHERE `parent`=? ORDER BY `id` ASC";
 	
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
+												+ "`type`=?,"
 												+ "`title`=?,"
 												+ "`content`=?,"
 												+ "`file`=?,"

@@ -1,7 +1,7 @@
 <%@page import="kr.co.farmstory1.bean.UserBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	UserBean ub = (UserBean)session.getAttribute("sessUser");
+	UserBean sessUser = (UserBean)session.getAttribute("sessUser");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@
             <a href="/Farmstory1" class="logo"><img src="/Farmstory1/img/logo.png" alt="로고"/></a>
             <p>
                 <a href="/Farmstory1">HOME |</a>
-                <% if(ub == null){ %>
+                <% if(sessUser == null){ %>
                 	<a href="/Farmstory1/user/login.jsp">로그인 |</a>
                 	<a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
                 <% }else{ %>
