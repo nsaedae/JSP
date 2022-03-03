@@ -10,7 +10,18 @@
 	
 	pageContext.include("./inc/_"+cate+".jsp");
 	
-	List<ArticleBean> articles = ArticleDao.getInstance().selectArticles();
+	
+	// 전체 게시판 글 갯수 구해서 각 페이지 시작번호 구하기
+	ArticleDao dao = ArticleDao.getInstance();
+	
+	int total = dao.selectCountTotal(type);
+	int start = 0;
+	
+	int pageStartNum = total - start;
+	
+	// 글 가져오기
+	List<ArticleBean> articles = dao.selectArticles(type, start);
+	
 %>
 <section id="board" class="list">
     <h3>글목록</h3>
@@ -26,7 +37,7 @@
             
             <% for(ArticleBean article : articles){ %>
             <tr>
-                <td><%= article.getNo() %></td>
+                <td><%= pageStartNum-- %></td>
                 <td><a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
                 <td><%= article.getNick() %></td>
                 <td><%= article.getRdate().substring(2, 10) %></td>

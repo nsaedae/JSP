@@ -39,15 +39,36 @@ public class ArticleDao {
 		}
 	}
 	
+	public int selectCountTotal(String type) {
+		
+		int total = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_NO);
+			psmt.setString(1, type);
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return total;		
+	}
 	public void selectArticle() {}
 	
-	public List<ArticleBean> selectArticles() {
+	public List<ArticleBean> selectArticles(String type, int start) {
 		
 		List<ArticleBean> articles = new ArrayList<>();
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+			psmt.setString(1, type);
+			psmt.setInt(2, start);
 			ResultSet rs = psmt.executeQuery();
 			
 			while(rs.next()) {
