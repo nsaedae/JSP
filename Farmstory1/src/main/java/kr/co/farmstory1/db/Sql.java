@@ -43,6 +43,12 @@ public class Sql {
 												+ "JOIN `Board_user` AS b ON a.uid = b.uid "
 												+ "WHERE `parent`=? ORDER BY `id` ASC";
 	
+	public static final String SELECT_LATESTS = "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='grow'   ORDER BY `no` DESC LIMIT 5) "
+												+ "UNION "
+												+ "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='school' ORDER BY `no` DESC LIMIT 5) "
+												+ "UNION "
+												+ "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='story'  ORDER BY `no` DESC LIMIT 5)"; 
+	
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
 												+ "`type`=?,"
 												+ "`title`=?,"
