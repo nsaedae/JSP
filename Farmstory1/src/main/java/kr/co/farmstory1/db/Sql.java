@@ -36,8 +36,8 @@ public class Sql {
 												+ "JOIN `Board_user` AS b "
 												+ "ON a.uid = b.uid "
 												+ "WHERE a.parent = 0 "
-												+ "ORDER BY `id` DESC "
-												+ "LIMIT ?, 10";
+												+ "ORDER BY `no` DESC";
+												//+ "LIMIT ?, 10";
 	
 	public static final String SELECT_COMMENTS = "SELECT a.*, b.nick FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b ON a.uid = b.uid "

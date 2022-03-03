@@ -1,3 +1,6 @@
+<%@page import="kr.co.farmstory1.bean.ArticleBean"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.co.farmstory1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
 <%
@@ -6,6 +9,8 @@
 	String type = request.getParameter("type");
 	
 	pageContext.include("./inc/_"+cate+".jsp");
+	
+	List<ArticleBean> articles = ArticleDao.getInstance().selectArticles();
 %>
 <section id="board" class="list">
     <h3>글목록</h3>
@@ -18,13 +23,16 @@
                 <th>날짜</th>
                 <th>조회</th>
             </tr>
+            
+            <% for(ArticleBean article : articles){ %>
             <tr>
-                <td>1</td>
-                <td><a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>">테스트 제목입니다.</a>&nbsp;[3]</td>
-                <td>길동이</td>
-                <td>20-05-12</td>
-                <td>12</td>
+                <td><%= article.getNo() %></td>
+                <td><a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
+                <td><%= article.getNick() %></td>
+                <td><%= article.getRdate().substring(2, 10) %></td>
+                <td><%= article.getHit() %></td>
             </tr>
+            <% } %>
         </table>
     </article>
 

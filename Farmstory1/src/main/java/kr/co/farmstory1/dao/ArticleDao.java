@@ -2,6 +2,9 @@ package kr.co.farmstory1.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.farmstory1.bean.ArticleBean;
 import kr.co.farmstory1.db.DBConfig;
@@ -37,7 +40,52 @@ public class ArticleDao {
 	}
 	
 	public void selectArticle() {}
-	public void selectArticles() {}
+	
+	public List<ArticleBean> selectArticles() {
+		
+		List<ArticleBean> articles = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleBean article = new ArticleBean();
+				article.setNo(rs.getInt(1));
+				article.setParent(rs.getInt(2));
+				article.setComment(rs.getInt(3));
+				article.setType(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setContent(rs.getString(6));
+				article.setFile(rs.getInt(7));
+				article.setHit(rs.getInt(8));
+				article.setUid(rs.getString(9));
+				article.setRegip(rs.getString(10));
+				article.setRdate(rs.getString(11));
+				article.setNick(rs.getString(12));
+				articles.add(article);
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return articles;
+	}
 	public void updateArticle() {}
 	public void deleteArticle() {}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
