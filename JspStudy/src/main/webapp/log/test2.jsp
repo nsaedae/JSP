@@ -47,8 +47,6 @@
 		_logger.warn("warn log!!!");
 		_logger.error("error log!!!");
 		_logger.fatal("fatal log!!!");
-	
 	%>
-	
 </body>
 </html>
