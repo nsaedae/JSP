@@ -13,12 +13,13 @@ public class HelloServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		// 서블릿이 최초 요청에 대한 초기화 메서드
 		System.out.println("HelloServlet init 실행...");
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		// get 요청에 대한 응답 메서드
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		PrintWriter writer = resp.getWriter();
@@ -37,13 +38,12 @@ public class HelloServlet extends HttpServlet {
 		writer.println("</p>");		
 		writer.println("</body>");		
 		writer.println("</html>");
-		
 		writer.close();
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		// post 요청에 대한 응답 메서드
 	}
 	
 }
