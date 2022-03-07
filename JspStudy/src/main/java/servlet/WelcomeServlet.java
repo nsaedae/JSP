@@ -32,7 +32,8 @@ public class WelcomeServlet extends HttpServlet {
 		writer.println("<h3>WelcomeServlet</h3>");
 		writer.println("<p>");
 		writer.println("WelcomeServlet 컴포넌트 실행완료...<br/>");
-		writer.println("<a href='/JspStudy/Sub8/HelloServlet.do'>HelloServlet 요청</a>");
+		writer.println("<a href='/JspStudy/Sub8/HelloServlet.do'>HelloServlet 요청</a><br/>");
+		writer.println("<a href='/JspStudy/Sub8/1.Servlet.jsp'>Servlet.jsp 요청</a><br/>");
 		writer.println("</p>");		
 		writer.println("</body>");		
 		writer.println("</html>");

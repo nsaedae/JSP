@@ -7,5 +7,7 @@
 </head>
 <body>
 	<h3>1.서블릿 실습하기</h3>
+	<a href="/JspStudy/Sub8/HelloServlet.do">HelloServlet 요청</a><br/>
+	<a href="/JspStudy/Sub8/WelcomeServlet.do">WelcomeServlet 요청</a>
 </body>
 </html>
