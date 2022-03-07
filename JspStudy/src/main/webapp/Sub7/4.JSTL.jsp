@@ -48,6 +48,33 @@
 			out.print("<p>num3이 가장 크다.</p>");
 		}
 		
+		// 반복문
+		for(int i=1 ; i<=5 ; i++){
+			out.print("<p>i : "+i+"</p>");
+		}
+		
+		String[] people = {"김유신", "김춘추", "장보고", "강감찬", "이순신"};
+		
+		for(String person : people){
+			out.print("<em>"+person+"</em>,");
+		}
+		
+		int sum = 0;
+		
+		for(int k=1 ; k<=10 ; k++){
+			sum += k;
+		}
+		
+		out.print("<p>1부터 10까지 합 : "+sum+"</p>");
+		
+		// 문자열 처리
+		String hello = "Hello Korea";
+		
+		out.print("<p>문자열 길이 : "+hello.length()+"</p>");
+		out.print("<p>문자열 자르기 : "+hello.substring(6, 10)+"</p>");
+		out.print("<p>문자열 교체 : "+hello.replace("Korea", "Busan")+"</p>");
+		out.print("<p>문자열 인덱스 : "+hello.indexOf("e")+"</p>");
+		
 	%>
 	
 	
@@ -75,9 +102,42 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<c:choose>
+		<c:when test="${num1 gt num2}">
+			<p>num1은 num2보다 크다.</p>
+		</c:when>
+		<c:when test="${num2 gt num3}">
+			<p>num2은 num3보다 크다.</p>
+		</c:when>
+		<c:otherwise>
+			<p>num3이 가장 크다.</p>
+		</c:otherwise>
+	</c:choose>
 	
+	<!-- 반복문 -->
+	<c:forEach var="i" begin="1" end="5">
+		<p>i : ${i}</p>
+	</c:forEach>
 	
+	<c:set var="people">김유신,김춘추,장보고,강감찬,이순신</c:set>
 	
+	<c:forEach var="person" items="${people}">
+		<em>${person}</em>,
+	</c:forEach>
+	
+	<c:set var="sum" value="0"/>
+	<c:forEach var="k" begin="1" end="10">
+		<c:set var="sum" value="${sum + k}"/>
+	</c:forEach>
+	
+	<p>1부터 10까지 합 : ${sum}</p>
+	
+	<!-- 문자열 처리 -->
+	<c:set var="hello" value="Hello Korea"/>
+	<p>문자열 길이 : ${f:length(hello)}</p>
+	<p>문자열 자르기 : ${f:substring(hello, 6, 10)}</p>
+	<p>문자열 교체 : ${f:replace(hello, "Korea", "Busan")}</p>
+	<p>문자열 인덱스 : ${f:indexOf(hello, "e")}</p>
 	
 </body>
 </html>
