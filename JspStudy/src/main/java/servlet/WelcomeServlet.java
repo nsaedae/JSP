@@ -19,6 +19,7 @@ public class WelcomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		// HTML 페이지 출력
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		PrintWriter writer = resp.getWriter();
