@@ -63,7 +63,6 @@ public class MainController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 	}// init end...
 	
 	@Override
