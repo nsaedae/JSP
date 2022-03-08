@@ -7,12 +7,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.service.CommonService;
+import model.service.MVCService;
 
 public class MainController extends HttpServlet {
 
@@ -64,12 +68,32 @@ public class MainController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		requestProc(req, resp);
 	}// doGet end...
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		requestProc(req, resp);
 	}// doPost end...
+	
+	protected void requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// 요청주소에서 service 객체의 key 구하기
+		String path = req.getContextPath();
+		String uri = req.getRequestURI();
+		String key = uri.substring(path.length());
+		
+		// instances에서 service 객체 가져오기
+		CommonService service = (CommonService) instances.get(key);
+
+		// service 객체 실행 후 view 리턴 받기
+		String view = service.businessProc(req, resp);
+		
+		// view 포워드
+		RequestDispatcher dispatcher = req.getRequestDispatcher(view);
+		dispatcher.forward(req, resp);
+		
+	}// requestProc end...
+	
 	
 }
