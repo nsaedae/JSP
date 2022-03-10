@@ -31,7 +31,7 @@ public class RegisterService implements CommonService {
 			
 			UserDao.getInstance().insertUser(vo);
 			
-			return "/Sub8/user/register.jsp";
+			return "redirect:/JspStudy/Sub8/user/list.do";
 		}
 		
 	}
