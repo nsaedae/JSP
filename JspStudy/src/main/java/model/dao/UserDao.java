@@ -105,5 +105,16 @@ public class UserDao {
 	}
 	
 	
-	public void deleteUser() {}
+	public void deleteUser(String uid) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement("DELETE FROM `User1` WHERE `uid`=?");
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

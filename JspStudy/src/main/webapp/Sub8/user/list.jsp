@@ -24,7 +24,7 @@
 					<td>${user.hp}</td>
 					<td>${user.age}</td>
 					<td>
-						<a href="#">삭제</a>
+						<a href="/JspStudy/Sub8/user/delete.do?uid=${user.uid}">삭제</a>
 						<a href="/JspStudy/Sub8/user/modify.do?uid=${user.uid}">수정</a>
 					</td>			
 				</tr>
