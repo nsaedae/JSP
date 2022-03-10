@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +8,7 @@
 	</head>
 	<body>
 		<h3>User목록</h3>
-		<a href="#">User등록</a>
+		<a href="/JspStudy/Sub8/user/register.do">User등록</a>
 		<table border="1">
 			<tr>
 				<th>아이디</th>
@@ -16,16 +17,18 @@
 				<th>나이</th>
 				<th>관리</th>
 			</tr>
-			<tr>
-				<td>abcd</td>
-				<td>홍길동</td>
-				<td>010-1211-1010</td>
-				<td>32</td>
-				<td>
-					<a href="#">삭제</a>
-					<a href="#">수정</a>
-				</td>			
-			</tr>
+			<c:forEach var="user" items="${requestScope.users}">
+				<tr>
+					<td>${user.getUid()}</td>
+					<td>${user.name}</td>
+					<td>${user.hp}</td>
+					<td>${user.age}</td>
+					<td>
+						<a href="#">삭제</a>
+						<a href="#">수정</a>
+					</td>			
+				</tr>
+			</c:forEach>
 		</table>		
 	</body>
 </html>

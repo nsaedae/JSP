@@ -2,6 +2,10 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import controller.DBConfig;
 import vo.UserVo;
@@ -35,7 +39,31 @@ public class UserDao {
 	}
 	
 	public void selectUser() {}
-	public void selectUsers() {}
+	
+	public List<UserVo> selectUsers() {
+		List<UserVo> users = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM `User1`");
+			
+			while(rs.next()) {
+				UserVo vo = new UserVo();
+				vo.setUid(rs.getString(1));
+				vo.setName(rs.getString(2));
+				vo.setHp(rs.getString(3));
+				vo.setAge(rs.getInt(4));
+				users.add(vo);
+			}
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	
+	
 	public void updateUser() {}
 	public void deleteUser() {}
 }
