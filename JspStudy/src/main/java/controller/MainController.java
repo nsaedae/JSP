@@ -76,6 +76,8 @@ public class MainController extends HttpServlet {
 	}// doPost end...
 	
 	protected void requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 전송 request 문자셋 설정
+		req.setCharacterEncoding("utf-8");
 		
 		// 요청주소에서 service 객체의 key 구하기
 		String path = req.getContextPath();
