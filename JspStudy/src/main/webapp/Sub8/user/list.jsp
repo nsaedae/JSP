@@ -17,7 +17,7 @@
 				<th>나이</th>
 				<th>관리</th>
 			</tr>
-			<c:forEach var="user" items="${requestScope.users}">
+			<c:forEach var="user" items="${users}">
 				<tr>
 					<td>${user.getUid()}</td>
 					<td>${user.name}</td>
@@ -25,7 +25,7 @@
 					<td>${user.age}</td>
 					<td>
 						<a href="#">삭제</a>
-						<a href="#">수정</a>
+						<a href="/JspStudy/Sub8/user/modify.do?uid=${user.uid}">수정</a>
 					</td>			
 				</tr>
 			</c:forEach>

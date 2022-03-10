@@ -38,7 +38,31 @@ public class UserDao {
 		}		
 	}
 	
-	public void selectUser() {}
+	public UserVo selectUser(String uid) {
+		
+		UserVo user = new UserVo();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement("SELECT * FROM `User1` WHERE `uid`=?");
+			psmt.setString(1, uid);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				user.setUid(rs.getString(1));
+				user.setName(rs.getString(2));
+				user.setHp(rs.getString(3));
+				user.setAge(rs.getInt(4));
+			}
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
 	
 	public List<UserVo> selectUsers() {
 		List<UserVo> users = new ArrayList<>();
@@ -64,6 +88,22 @@ public class UserDao {
 	}
 	
 	
-	public void updateUser() {}
+	public void updateUser(UserVo vo) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement("UPDATE `User1` SET `name`=?, `hp`=?, `age`=? WHERE `uid`=?");
+			psmt.setString(1, vo.getName());
+			psmt.setString(2, vo.getHp());
+			psmt.setInt(3, vo.getAge());
+			psmt.setString(4, vo.getUid());
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void deleteUser() {}
 }
