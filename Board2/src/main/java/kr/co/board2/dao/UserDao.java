@@ -1,12 +1,14 @@
 package kr.co.board2.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import kr.co.board2.db.DBConfig;
 import kr.co.board2.db.Sql;
 import kr.co.board2.vo.TermsVo;
+import kr.co.board2.vo.UserVo;
 
 public class UserDao {
 
@@ -19,7 +21,27 @@ public class UserDao {
 	private UserDao() {}
 	
 	// ±âº» CRUD
-	public void insertUser() {}
+	public void insertUser(UserVo vo) {
+		try{
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_USER);
+			psmt.setString(1, vo.getUid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getName());
+			psmt.setString(4, vo.getNick());
+			psmt.setString(5, vo.getEmail());
+			psmt.setString(6, vo.getHp());
+			psmt.setString(7, vo.getZip());
+			psmt.setString(8, vo.getAddr1());
+			psmt.setString(9, vo.getAddr2());
+			psmt.setString(10, vo.getRegip());
+			psmt.executeUpdate();
+			conn.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public TermsVo selectTerms() {
 		
