@@ -5,6 +5,40 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <link rel="stylesheet" href="/Board2/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    	// 정규표현식
+	    let reUid  = /^[a-z]+[a-z0-9]{3,9}$/;
+	
+	    // 최종 유효성 검사에 사용될 상태변수
+	    let isUidOk   = false;
+    
+    	$(function(){
+    		// 아이디 중복체크
+    		$('input[name=uid]').focusout(function(){
+    			let uid = $(this).val();
+    			let jsonData = {"uid": uid};				
+    			$.ajax({
+    				url: '/Board2/user/checkUid.do',
+    				type: 'get',
+    				data: jsonData,
+    				dataType: 'json',
+    				success: function(data){
+    					if(data.result > 0){
+    						$('.resultId').css('color', 'red').text('이미 사용중인 아이디 입니다.');
+    					}else{
+    						// 아이디 유효성 검사
+    						if(reUid.test(uid)){
+    							$('.resultId').css('color', 'green').text('사용 가능한 아이디 입니다.');
+    						}else{
+    							$('.resultId').css('color', 'red').text('아이디는 영문 소문자, 숫자 조합 4 ~ 10자까지 입니다.');
+    						}
+    					}
+    				}
+    			});
+    		});
+    	});
+    </script>
 </head>
 <body>
     <div id="wrapper">

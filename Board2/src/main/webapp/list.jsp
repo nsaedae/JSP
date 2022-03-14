@@ -13,7 +13,7 @@
             <article>
                 <p>
                     홍길동님 반갑습니다.
-                    <a href="./user/login.html" class="logout">[로그아웃]</a>
+                    <a href="/Board2/user/logout.do" class="logout">[로그아웃]</a>
                 </p>
                 <table border="0">
                     <tr>

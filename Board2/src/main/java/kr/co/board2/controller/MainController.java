@@ -2,6 +2,7 @@ package kr.co.board2.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -74,8 +75,6 @@ public class MainController extends HttpServlet {
 	}// doPost end...
 	
 	protected void requestProc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 전송 request 문자셋 설정
-		req.setCharacterEncoding("utf-8");
 		
 		// 요청주소에서 service 객체의 key 구하기
 		String path = req.getContextPath();
@@ -92,6 +91,11 @@ public class MainController extends HttpServlet {
 			// 리다이렉트
 			String redirectUrl = result.substring(9);
 			resp.sendRedirect(redirectUrl);
+		}else if(result.startsWith("json:")) {
+			// Json 출력
+			PrintWriter out = resp.getWriter();
+			out.print(result.substring(5));
+			
 		}else {
 			// view 포워드
 			RequestDispatcher dispatcher = req.getRequestDispatcher(result);
