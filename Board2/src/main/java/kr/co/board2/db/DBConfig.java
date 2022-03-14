@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConfig {
 	
-	// ΩÃ±€≈Ê ∞¥√º
+	// ΩÃ±€≈Ê
 	private static DBConfig instance = new DBConfig();
 	
 	public static DBConfig getInstance() {
