@@ -20,7 +20,7 @@ public class UserDao {
 		
 	private UserDao() {}
 	
-	// ±‚∫ª CRUD
+	// Í∏∞Î≥∏ CRUD
 	public void insertUser(UserVo vo) {
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -85,7 +85,7 @@ public class UserDao {
 	
 	public UserVo selectUser(String uid, String pass) {
 		
-		UserVo user = null; // º±æ
+		UserVo user = null; // ÏÑ†Ïñ∏
 				
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -96,7 +96,7 @@ public class UserDao {
 			ResultSet rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				user = new UserVo(); // ª˝º∫
+				user = new UserVo(); // ÏÉùÏÑ±
 				user.setUid(rs.getString(1));
 				user.setPass(rs.getString(2));
 				user.setName(rs.getString(3));
