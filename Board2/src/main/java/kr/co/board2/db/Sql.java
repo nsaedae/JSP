@@ -24,7 +24,7 @@ public class Sql {
 	public static final String SELECT_USER = "SELECT * FROM `Board_user` WHERE `uid`=? AND `pass`=PASSWORD(?)";
 	
 	// board
-	public static final String SELECT_MAX_ID   = "SELECT MAX(`id`) FROM `Board_article`";
+	public static final String SELECT_MAX_NO   = "SELECT MAX(`no`) FROM `Board_article`";
 	public static final String SELECT_COUNT_ID = "SELECT COUNT(`id`) FROM `Board_article` WHERE `parent`=0";
 	public static final String SELECT_FILE     = "SELECT * FROM `Board_file` WHERE `fid`=?";
 	public static final String SELECT_ARTICLE  = "SELECT * FROM `Board_article` AS a "

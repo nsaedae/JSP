@@ -11,7 +11,7 @@
         <section id="board" class="write">
             <h3>글쓰기</h3>
             <article>
-                <form action="/Board2/write.do" method="post">
+                <form action="/Board2/write.do" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="uid" value="${sessUser.uid}"/>
                     <table>
                         <tr>
