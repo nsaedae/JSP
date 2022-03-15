@@ -27,7 +27,7 @@
                     
                     <c:forEach var="article" items="${articles}">
 	                    <tr>
-	                        <td>${article.no}</td>
+	                        <td>${pageStartNum = pageStartNum - 1}</td>
 	                        <td><a href="/Board2/view.do?no=${article.no}">${article.title}</a>&nbsp;[${article.comment}]</td>
 	                        <td>${article.nick}</td>
 	                        <td>${article.rdate}</td>
@@ -39,11 +39,15 @@
 
             <!-- 페이지 네비게이션 -->
             <div class="paging">
-                <a href="#" class="prev">이전</a>
-                <a href="#" class="num current">1</a>                
-                <a href="#" class="num">2</a>                
-                <a href="#" class="num">3</a>                
-                <a href="#" class="next">다음</a>
+            	<c:if test="${groups[0] > 1}">
+                	<a href="/Board2/list.do?pg=${groups[0] - 1}" class="prev">이전</a>
+                </c:if>
+                <c:forEach var="i" begin="${groups[0]}" end="${groups[1]}">
+                	<a href="/Board2/list.do?pg=${i}" class="num ${currentPage == i ? 'current':'off'}">${i}</a>                
+                </c:forEach>
+				<c:if test="${groups[1] < lastPageNum}">                            
+                	<a href="/Board2/list.do?pg=${groups[1] + 1}" class="next">다음</a>
+                </c:if>
             </div>
 
             <!-- 글쓰기 버튼 -->
