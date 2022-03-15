@@ -35,7 +35,7 @@ public class Sql {
 	public static final String SELECT_ARTICLES = "SELECT a.*, b.`nick` FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b "
 												+ "ON a.uid = b.uid "
-												+ "WHERE a.parent = 0 "
+												+ "WHERE a.parent = 0 AND a.type IS NULL "
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
 	
