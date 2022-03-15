@@ -74,6 +74,28 @@ public class ArticleDao {
 		return no;
 	}
 	
+	public int selectCountTotal() {
+		int total = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_NO);
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+	
 	public void selectArticle() {}
 	
 	public List<ArticleVo> selectArticles(int start) {
