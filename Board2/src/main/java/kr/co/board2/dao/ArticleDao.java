@@ -89,7 +89,7 @@ public class ArticleDao {
 			
 			while(rs.next()){
 				ArticleVo article = new ArticleVo();
-				article.setId(rs.getInt(1));
+				article.setNo(rs.getInt(1));
 				article.setParent(rs.getInt(2));
 				article.setComment(rs.getInt(3));
 				article.setCate(rs.getString(4));

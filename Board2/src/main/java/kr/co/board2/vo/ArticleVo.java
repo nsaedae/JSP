@@ -2,7 +2,7 @@ package kr.co.board2.vo;
 
 public class ArticleVo {
 
-	private int id;
+	private int no;
 	private int parent;
 	private int comment;
 	private String cate;
@@ -34,11 +34,11 @@ public class ArticleVo {
 	}
 	
 	
-	public int getId() {
-		return id;
+	public int getNo() {
+		return no;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public int getParent() {
 		return parent;
