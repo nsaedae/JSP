@@ -80,7 +80,7 @@ public class ArticleDao {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_NO);
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL);
 			
 			if(rs.next()) {
 				total = rs.getInt(1);
