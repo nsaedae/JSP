@@ -12,7 +12,7 @@
             <h3>글목록</h3>
             <article>
                 <p>
-                    홍길동님 반갑습니다.
+                    ${sessUser.nick}님 반갑습니다.
                     <a href="/Board2/user/logout.do" class="logout">[로그아웃]</a>
                 </p>
                 <table border="0">
@@ -43,7 +43,7 @@
             </div>
 
             <!-- 글쓰기 버튼 -->
-            <a href="./write.html" class="btnWrite">글쓰기</a>
+            <a href="/Board2/write.do" class="btnWrite">글쓰기</a>
 
         </section>
     </div>    
