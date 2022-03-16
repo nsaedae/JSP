@@ -25,7 +25,7 @@ public class CommentService implements CommonService {
 		
 		ArticleDao.getInstance().insertComment(vo);
 		
-		return null;
+		return "redirect:/Board2/view.do?no="+parent;
 	}
 
 }

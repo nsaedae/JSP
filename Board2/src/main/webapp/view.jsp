@@ -61,6 +61,8 @@
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
                 <form action="/Board2/comment.do" method="post">
+                	<input type="hidden" name="parent" value="${article.no}"/>
+                	<input type="hidden" name="uid" value="${sessUser.uid}"/>
                     <textarea name="content"></textarea>
                     <div>
                         <a href="#" class="btnCancel">취소</a>
