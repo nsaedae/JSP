@@ -29,8 +29,8 @@ public class Sql {
 	public static final String SELECT_FILE     = "SELECT * FROM `Board_file` WHERE `fid`=?";
 	public static final String SELECT_ARTICLE  = "SELECT * FROM `Board_article` AS a "
 												+ "LEFT JOIN `Board_file` AS b "
-												+ "ON a.id=b.parent "
-												+ "WHERE `id`=?";
+												+ "ON a.no=b.parent "
+												+ "WHERE `no`=?";
 	
 	public static final String SELECT_ARTICLES = "SELECT a.*, b.`nick` FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b "
