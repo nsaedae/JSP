@@ -41,7 +41,7 @@ public class Sql {
 	
 	public static final String SELECT_COMMENTS = "SELECT a.*, b.nick FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b ON a.uid = b.uid "
-												+ "WHERE `parent`=? ORDER BY `id` ASC";
+												+ "WHERE `parent`=? ORDER BY `no` ASC";
 	
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
 												+ "`title`=?,"

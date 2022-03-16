@@ -191,6 +191,41 @@ public class ArticleDao {
 		return articles;
 	}
 	
+	public List<ArticleVo> selectComments(String parent) {
+		
+		List<ArticleVo> comments = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
+			psmt.setString(1, parent);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()){
+				ArticleVo comment = new ArticleVo();
+				comment.setNo(rs.getInt(1));
+				comment.setParent(rs.getInt(2));
+				comment.setComment(rs.getInt(3));
+				comment.setCate(rs.getString(4));
+				comment.setTitle(rs.getString(5));
+				comment.setContent(rs.getString(6));
+				comment.setFile(rs.getInt(7));
+				comment.setHit(rs.getInt(8));
+				comment.setUid(rs.getString(9));
+				comment.setRegip(rs.getString(10));
+				comment.setRdate(rs.getString(11).substring(2, 10));
+				comment.setNick(rs.getString(12));
+				comments.add(comment);
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return comments;
+	}
+	
 	public void updateArticle() {}
 	
 	public void deleteArticle() {}

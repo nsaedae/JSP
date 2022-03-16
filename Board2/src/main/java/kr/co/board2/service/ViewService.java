@@ -1,5 +1,7 @@
 package kr.co.board2.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,9 +25,14 @@ public class ViewService implements CommonService {
 			return "redirect:/Board2/user/login.do";
 		}else {
 			String no = req.getParameter("no");
-			ArticleVo article = ArticleDao.getInstance().selectArticle(no);
+			
+			ArticleDao dao = ArticleDao.getInstance();
+			
+			ArticleVo article = dao.selectArticle(no);
+			List<ArticleVo> comments = dao.selectComments(no);
 			
 			req.setAttribute("article", article);
+			req.setAttribute("comments", comments);
 			
 			return "/view.jsp";
 		}
