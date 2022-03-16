@@ -41,7 +41,10 @@ public class ArticleDao {
 		return selectMaxNo();
 	}
 	
-	public void insertComment(ArticleVo vo) {
+	public int insertComment(ArticleVo vo) {
+		
+		int result = 0;
+		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
@@ -49,12 +52,14 @@ public class ArticleDao {
 			psmt.setString(2, vo.getContent());
 			psmt.setString(3, vo.getUid());
 			psmt.setString(4, vo.getRegip());
-			psmt.executeUpdate();
+			result = psmt.executeUpdate();
 			
 			conn.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 	
 	

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>글보기</title>
     <link rel="stylesheet" href="/Board2/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -60,11 +61,46 @@
                 	<p class="empty">등록된 댓글이 없습니다.</p>
                 </c:if>
             </section>
+            
+            <script>
+            	
+	            $(function(){
+	            	
+	            	$('.commentForm > form').submit(function(){
+	            		
+	            		let parent  = $(this).children('input[name=parent]').val();
+	            		let uid     = $(this).children('input[name=uid]').val();
+	            		let content = $(this).children('textarea[name=content]').val();
+	            		
+	            		let jsonData = {"parent": parent, "uid": uid, "content": content };
+	            		
+	            		$.ajax({
+	            			url: '/Board2/comment.do',
+	            			type: 'post',
+	            			data: jsonData,
+	            			dataType: 'json',
+	            			success: function(data){
+	            				
+	            				console.log(data);
+	            					            				
+	            				
+	            			}	            			
+	            		});
+	            		
+	            		return false;
+	            	});
+	            	
+	            	
+	            	
+	            });
+            
+            
+            </script>
 
             <!-- 댓글입력폼 -->
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
-                <form action="/Board2/comment.do" method="post">
+                <form action="#" method="post">
                 	<input type="hidden" name="parent" value="${article.no}"/>
                 	<input type="hidden" name="uid" value="${sessUser.uid}"/>
                     <textarea name="content"></textarea>
