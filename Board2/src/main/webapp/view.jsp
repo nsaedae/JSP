@@ -33,9 +33,9 @@
                 </tr>
             </table>
             <div>
-                <a href="#" class="btnDelete">삭제</a>
-                <a href="./modify.html" class="btnModify">수정</a>
-                <a href="./list.html" class="btnList">목록</a>
+                <a href="/Board2/delete.do" class="btnDelete">삭제</a>
+                <a href="/Board2/modify.do" class="btnModify">수정</a>
+                <a href="/Board2/list.do" class="btnList">목록</a>
             </div>  
             
             <!-- 댓글리스트 -->
@@ -60,8 +60,8 @@
             <!-- 댓글입력폼 -->
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
-                <form action="#">
-                    <textarea name="comment"></textarea>
+                <form action="/Board2/comment.do" method="post">
+                    <textarea name="content"></textarea>
                     <div>
                         <a href="#" class="btnCancel">취소</a>
                         <input type="submit" class="btnWrite" value="작성완료"/>

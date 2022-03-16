@@ -41,6 +41,23 @@ public class ArticleDao {
 		return selectMaxNo();
 	}
 	
+	public void insertComment(ArticleVo vo) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+			psmt.setInt(1, vo.getParent());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getUid());
+			psmt.setString(4, vo.getRegip());
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void insertFile(int parent, String oName, String nName) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
