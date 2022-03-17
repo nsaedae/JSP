@@ -303,6 +303,23 @@ public class ArticleDao {
 	
 	
 	public void deleteArticle() {}
+	
+	public int deleteComment(String no) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 			
 	
 }

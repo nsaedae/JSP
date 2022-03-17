@@ -51,8 +51,8 @@
 	                    </span>
 	                    <textarea name="content" readonly>${comment.content}</textarea>
 	                    <div>
-	                        <a href="#">삭제</a>
-	                        <a href="#">수정</a>
+	                        <a href="#" class="del" data-no="${comment.no}">삭제</a>
+	                        <a href="#" class="modify" data-no="${comment.no}">수정</a>
 	                    </div>
 	                </article>
                 </c:forEach>
@@ -63,7 +63,35 @@
             </section>
             
             <script>
-            	
+            	// 댓글 삭제/수정
+            	$(function(){
+            		
+            		// 동적 이벤트 구현
+            		$(document).on('click', '.comment > div > .del', function(e){
+            			e.preventDefault();
+            			
+            			let result = confirm('정말 삭제하시겠습니까?');
+            			if(!result){
+            				return;
+            			}
+						
+            			let no = $(this).attr('data-no');
+            			let jsonData = {"no":no};
+            			let url = "/Board2/commentDelete.do";
+            			
+            			$.get(url, jsonData, function(data){
+            				
+            				if(data.result == 1){
+            					alert("삭제 되었습니다.");
+            				}
+            				
+            			}, 'json');
+            		});
+            		
+            	}); // 댓글 삭제/수정 끝
+            
+            
+            	// 댓글 등록
 	            $(function(){
 	            	
 	            	$('.commentForm > form').submit(function(){
@@ -94,8 +122,8 @@
 				    	                    	</span>
 				    	                    	<textarea name="comment" readonly>댓글내용</textarea>
 				    	                    	<div>
-				    	                        	<a href="#">삭제</a>
-				    	                        	<a href="#">수정</a>
+				    	                        	<a href="#" class="del">삭제</a>
+				    	                        	<a href="#" class="modify">수정</a>
 				    	                    	</div>
 				    	                	</article>`;
             					
@@ -105,20 +133,20 @@
             					dom.find('.nick').text(data.nick);
             					dom.find('.rdate').text(data.rdate);
             					dom.find('textarea').text(data.content);
+            					dom.find('.del').attr('data-no', data.no);
+            					dom.find('.modify').attr('data-no', data.no);
             					
             					$('.commentList').append(dom);
             					
             					textarea.val("");
+            					$('.empty').remove();
             					
             					
 	            			} // success end
-	            			
 	            		}); // ajax end
 	            		
 	            		return false;
 	            	});
-	            	
-	            	
 	            	
 	            });
             

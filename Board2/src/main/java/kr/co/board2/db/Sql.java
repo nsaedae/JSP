@@ -76,7 +76,7 @@ public class Sql {
 	public static final String UPDATE_ARTICLE_COMMENT_MINUS = "UPDATE `Board_article` SET `comment` = `comment` - 1 WHERE `id`=?";
 	
 	public static final String UPDATE_COMMENT = "UPDATE `Board_article` SET `content`=? WHERE `id`=?";
-	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `id`=?";
+	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `no`=?";
 											  
 	
 }
