@@ -20,7 +20,7 @@ public class ArticleDao {
 	}
 	private ArticleDao() {}
 	
-	// ±‚∫ª CRUD
+	// Í∏∞Î≥∏ CRUD
 	public int insertArticle(ArticleVo vo) {
 		
 		try {
@@ -141,7 +141,7 @@ public class ArticleDao {
 				article.setRegip(rs.getString(10));
 				article.setRdate(rs.getString(11).substring(2, 10));
 				
-				// ∆ƒ¿œ¡§∫∏
+				// ÌååÏùºÏ†ïÎ≥¥
 				FileVo fv = new FileVo();
 				fv.setFid(rs.getInt(12));
 				fv.setParent(rs.getInt(13));
