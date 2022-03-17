@@ -70,6 +70,8 @@
             		$(document).on('click', '.comment > div > .del', function(e){
             			e.preventDefault();
             			
+            			let parentArticle = $(this).parent().parent();
+            			
             			let result = confirm('정말 삭제하시겠습니까?');
             			if(!result){
             				return;
@@ -83,6 +85,8 @@
             				
             				if(data.result == 1){
             					alert("삭제 되었습니다.");
+            					// 화면 동적 삭제
+            					parentArticle.remove();
             				}
             				
             			}, 'json');
