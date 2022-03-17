@@ -7,6 +7,9 @@
     <title>글보기</title>
     <link rel="stylesheet" href="/Board2/css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/Board2/js/commentRegister.js"></script>
+    <script src="/Board2/js/commentModify.js"></script>
+    <script src="/Board2/js/commentDelete.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -61,148 +64,6 @@
                 	<p class="empty">등록된 댓글이 없습니다.</p>
                 </c:if>
             </section>
-            
-            <script>
-            	// 댓글 삭제/수정
-            	$(function(){
-            		
-            		// 댓글 삭제 - 동적 이벤트 구현
-            		$(document).on('click', '.comment > div > .del', function(e){
-            			e.preventDefault();
-            			
-            			let parentArticle = $(this).parent().parent();
-            			
-            			let result = confirm('정말 삭제하시겠습니까?');
-            			if(!result){
-            				return;
-            			}
-						
-            			let no = $(this).attr('data-no');
-            			let jsonData = {"no":no};
-            			let url = "/Board2/commentDelete.do";
-            			
-            			$.get(url, jsonData, function(data){
-            				
-            				if(data.result == 1){
-            					alert("삭제 되었습니다.");
-            					// 화면 동적 삭제
-            					parentArticle.remove();
-            				}
-            				
-            			}, 'json');
-            		});
-            		
-            	}); // 댓글 삭제 끝
-            
-	    		// 댓글 수정 - 동적 이벤트 구현
-	    		$(document).on('click', '.comment > div > .modify', function(e){
-	    			e.preventDefault();
-	    			
-	    			let mode = $(this).attr('data-mode');
-	    			
-	    			if(mode == 'r'){
-	    				// 수정모드 전환
-	    				$(this).attr('data-mode', 'w');
-	    				
-	    				let tag = $(this);    			
-		    			let textarea = tag.parent().prev();
-		    			
-		    			tag.prev().hide();		    			
-		    			tag.text('수정하기');
-		    			
-		    			textarea.attr('readonly', false).focus();
-		    			textarea.css({'background':'white', 'outline':'1px solid gray'});
-		    			
-	    			}else{
-	    				// 수정완료 하기
-	    				$(this).attr('data-mode', 'r');
-	    				
-	    				let tag = $(this);    			
-		    			let textarea = tag.parent().prev();    			 			
-		    			
-		    			let content = textarea.val();
-		    			let no = tag.attr('data-no');
-		    			
-		    			let jsonData = {"content": content, "no": no};
-		    			
-		    			
-		    			$.ajax({
-		    				url: '/Board2/commentModify.do',
-		    				type: 'post',
-		    				data: jsonData,
-		    				dataType: 'json',
-		    				success: function(data){
-		    					if(data.result == 1){
-		    						alert('댓글을 수정 했습니다.');
-		    						// 수정완료 모드로 전환
-		    						tag.text('수정');
-		    						tag.prev().show();		    						
-		    						textarea.attr('readonly', true);
-		    						textarea.css({'background':'transparent', 'outline':'none'});
-		    					}
-		    				}
-		    			});
-	    			}
-	    		});// 댓글 수정 끝
-            
-            	// 댓글 등록
-	            $(function(){
-	            	
-	            	$('.commentForm > form').submit(function(){
-	            		
-	            		let inputParent = $(this).children('input[name=parent]');
-	            		let inputUid    = $(this).children('input[name=uid]');
-	            		let textarea    = $(this).children('textarea[name=content]');
-	            		
-	            		let parent  = inputParent.val();
-	            		let uid     = inputUid.val();
-	            		let content = textarea.val();
-	            		
-	            		let jsonData = {"parent": parent, "uid": uid, "content": content };
-	            		
-	            		$.ajax({
-	            			url: '/Board2/comment.do',
-	            			type: 'post',
-	            			data: jsonData,
-	            			dataType: 'json',
-	            			success: function(data){
-	            				
-	            				console.log(data);
-	            				// 화면 동적 생성
-            					let html = `<article class="comment">
-				        	                    <span>
-				    	                        	<span class="nick">닉네임</span>
-				    	                        	<span class="rdate">22-03-16</span>
-				    	                    	</span>
-				    	                    	<textarea name="comment" readonly>댓글내용</textarea>
-				    	                    	<div>
-				    	                        	<a href="#" class="del">삭제</a>
-				    	                        	<a href="#" class="modify" data-mode="r">수정</a>
-				    	                    	</div>
-				    	                	</article>`;
-            					
-				    	        
-            					let dom = $(html);
-        						
-            					dom.find('.nick').text(data.nick);
-            					dom.find('.rdate').text(data.rdate);
-            					dom.find('textarea').text(data.content);
-            					dom.find('.del').attr('data-no', data.no);
-            					dom.find('.modify').attr('data-no', data.no);
-            					
-            					$('.commentList').append(dom);
-            					
-            					textarea.val("");
-            					$('.empty').remove();
-            					
-            					
-	            			} // success end
-	            		}); // ajax end
-	            		
-	            		return false;
-	            	});
-	            });
-            </script>
 
             <!-- 댓글입력폼 -->
             <section class="commentForm">
