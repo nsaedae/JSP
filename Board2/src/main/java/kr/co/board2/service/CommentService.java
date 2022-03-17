@@ -20,17 +20,16 @@ public class CommentService implements CommonService {
 		String uid     = req.getParameter("uid");
 		String regip   = req.getRemoteAddr();
 		
-		/*
 		ArticleVo vo = new ArticleVo();
 		vo.setParent(parent);
 		vo.setContent(content);
 		vo.setUid(uid);
 		vo.setRegip(regip);
-		*/
+		
 		ArticleDao dao = ArticleDao.getInstance();
 		
-		//int no = dao.insertComment(vo);
-		ArticleVo comment = dao.selectComment(274);
+		int no = dao.insertComment(vo);
+		ArticleVo comment = dao.selectComment(no);
 		
 		// Json 데이터 생성
 		Gson gson = new Gson();

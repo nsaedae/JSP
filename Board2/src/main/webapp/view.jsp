@@ -68,9 +68,13 @@
 	            	
 	            	$('.commentForm > form').submit(function(){
 	            		
-	            		let parent  = $(this).children('input[name=parent]').val();
-	            		let uid     = $(this).children('input[name=uid]').val();
-	            		let content = $(this).children('textarea[name=content]').val();
+	            		let inputParent = $(this).children('input[name=parent]');
+	            		let inputUid    = $(this).children('input[name=uid]');
+	            		let textarea    = $(this).children('textarea[name=content]');
+	            		
+	            		let parent  = inputParent.val();
+	            		let uid     = inputUid.val();
+	            		let content = textarea.val();
 	            		
 	            		let jsonData = {"parent": parent, "uid": uid, "content": content };
 	            		
@@ -83,10 +87,10 @@
 	            				
 	            				console.log(data);
 	            				// 화면 동적 생성
-            					let tags = `<article class="comment">
+            					let html = `<article class="comment">
 				        	                    <span>
-				    	                        	<span>닉네임</span>
-				    	                        	<span>22-03-16</span>
+				    	                        	<span class="nick">닉네임</span>
+				    	                        	<span class="rdate">22-03-16</span>
 				    	                    	</span>
 				    	                    	<textarea name="comment" readonly>댓글내용</textarea>
 				    	                    	<div>
@@ -95,15 +99,21 @@
 				    	                    	</div>
 				    	                	</article>`;
             					
-            					let dom = $.parseHTML(tags);
-            					
-            					dom.find('.comment > span > span:nth-child(1)').text(data.nick);
-            					dom.find('.comment > span > span:nth-child(2)').text(data.rdate);
-            					dom.find('.comment > textarea').text(data.content);
+				    	        
+            					let dom = $(html);
+        						
+            					dom.find('.nick').text(data.nick);
+            					dom.find('.rdate').text(data.rdate);
+            					dom.find('textarea').text(data.content);
             					
             					$('.commentList').append(dom);
-	            			}	            			
-	            		});
+            					
+            					textarea.val("");
+            					
+            					
+	            			} // success end
+	            			
+	            		}); // ajax end
 	            		
 	            		return false;
 	            	});
