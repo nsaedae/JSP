@@ -260,8 +260,47 @@ public class ArticleDao {
 		
 		return comment;
 	}
+
+	public FileVo selectFile(String fid) {
+		FileVo fvo = null;
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_FILE);
+			psmt.setString(1, fid);
+			
+			ResultSet rs = psmt.executeQuery();
+			if(rs.next()) {
+				fvo = new FileVo();
+				fvo.setFid(rs.getInt(1));
+				fvo.setParent(rs.getInt(2));
+				fvo.setoName(rs.getString(3));
+				fvo.setnName(rs.getString(4));
+				fvo.setDownload(rs.getInt(5));
+				fvo.setRdate(rs.getString(6));
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fvo;
+	}
+	
+	public void updateFileCount(String fid) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_COUNT);
+			psmt.setString(1, fid);
+			psmt.executeUpdate();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void updateArticle() {}
+	
+	
 	
 	public void deleteArticle() {}
 			

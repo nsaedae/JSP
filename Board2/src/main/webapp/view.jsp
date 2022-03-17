@@ -21,7 +21,7 @@
 	                <tr>
 	                    <td>첨부파일</td>
 	                    <td>
-	                        <a href="#">${article.fv.oName}</a>
+	                        <a href="/Board2/fileDownload.do?fid=${article.fv.fid}">${article.fv.oName}</a>
 	                        <span>${article.fv.download}회 다운로드</span>
 	                    </td>
 	                </tr>
@@ -95,7 +95,7 @@
 				    	                    	</div>
 				    	                	</article>`;
             					
-            					let dom = $(tags);
+            					let dom = $.parseHTML(tags);
             					
             					dom.find('.comment > span > span:nth-child(1)').text(data.nick);
             					dom.find('.comment > span > span:nth-child(2)').text(data.rdate);
