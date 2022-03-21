@@ -9,6 +9,13 @@ public class ListService implements CommonService {
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String cate = req.getParameter("cate");
+		String type = req.getParameter("type");
+		
+		req.setAttribute("cate", cate);
+		req.setAttribute("type", type);
+		
 		return "/board/list.jsp";
 	}
 
