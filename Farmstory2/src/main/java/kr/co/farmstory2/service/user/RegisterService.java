@@ -9,7 +9,7 @@ public class RegisterService implements CommonService {
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
-		return "/user/terms.jsp";
+		return "/user/register.jsp";
 	}
 
 }
