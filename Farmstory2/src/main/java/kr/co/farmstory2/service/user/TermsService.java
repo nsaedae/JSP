@@ -4,11 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.farmstory2.controller.CommonService;
+import kr.co.farmstory2.dao.UserDao;
+import kr.co.farmstory2.vo.TermsVo;
 
 public class TermsService implements CommonService {
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
+		
+		TermsVo vo = UserDao.getInstance().selectTerms();
+		
+		req.setAttribute("termsVo", vo);
+		
 		return "/user/terms.jsp";
 	}
 
