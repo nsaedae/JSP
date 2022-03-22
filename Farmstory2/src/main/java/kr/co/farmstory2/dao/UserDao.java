@@ -64,6 +64,27 @@ public class UserDao {
 		
 		return tv;
 	}
+	
+	public int selectCountUid(String uid) {
+		
+		int count = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 	public UserVo selectUser(String uid, String pass) {
 		
 		UserVo ub = null; // ¼±¾ð
