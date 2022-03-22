@@ -43,8 +43,5 @@ public class RegisterService implements CommonService {
 			
 			return "redirect:/Farmstory2/user/login.do";
 		}
-		
-		
 	}
-
 }
