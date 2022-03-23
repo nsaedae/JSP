@@ -1,7 +1,6 @@
 package kr.co.farmstory2.config;
 
 public class Sql {
-	
 	// user
 	public static final String SELECT_TERMS = "SELECT * FROM `Board_terms`";
 	public static final String INSERT_USER  = "INSERT INTO `Board_user` SET "

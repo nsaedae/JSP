@@ -64,7 +64,6 @@ public class ArticleDao {
 		return selectMaxNo();
 	}
 	
-	
 	public void insertFile(int parent, String oName, String nName) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -326,7 +325,6 @@ public class ArticleDao {
 		
 		return result;
 	}
-	
 	
 	public void deleteArticle() {}
 	
