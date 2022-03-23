@@ -32,13 +32,14 @@
     </div>
 
     <!-- 글쓰기 버튼 -->
-    <a href="/Farmstory2/board/write.do" class="btnWrite">글쓰기</a>
+    <a href="/Farmstory2/board/write.do?cate=${cate}&type=${type}" class="btnWrite">글쓰기</a>
 </section>
 
 <!-- 내용 끝 -->
 </article>
 </section>
 </div>
+
 <%@ include file="../_footer.jsp" %>
 
 
