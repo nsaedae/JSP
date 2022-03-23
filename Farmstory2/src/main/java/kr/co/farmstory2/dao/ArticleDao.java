@@ -99,21 +99,24 @@ public class ArticleDao {
 		return no;
 	}
 	
-	public int selectCountTotal() {
+	public int selectCountTotal(String type) {
 		int total = 0;
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL);
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
+			psmt.setString(1, type);
+			
+			ResultSet rs = psmt.executeQuery();
 			
 			if(rs.next()) {
 				total = rs.getInt(1);
 			}
 			
 			rs.close();
-			stmt.close();
+			psmt.close();
 			conn.close();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -164,14 +167,15 @@ public class ArticleDao {
 		return article;
 	}
 	
-	public List<ArticleVo> selectArticles(int start) {
+	public List<ArticleVo> selectArticles(String type, int start) {
 		
 		List<ArticleVo> articles = new ArrayList<>();
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
-			psmt.setInt(1, start);
+			psmt.setString(1, type);
+			psmt.setInt(2, start);
 			
 			ResultSet rs = psmt.executeQuery();
 			
