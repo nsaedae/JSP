@@ -293,6 +293,29 @@ public class ArticleDao {
 		return fvo;
 	}
 	
+	public List<ArticleVo> selectLatests(){
+		
+		List<ArticleVo> latests = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_LATESTS);
+			while(rs.next()) {
+				ArticleVo article = new ArticleVo();						
+				article.setNo(rs.getInt(1));
+				article.setType(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setRdate(rs.getString(11).substring(2, 10));
+				latests.add(article);
+			}
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return latests;
+	}
+	
 	public void updateFileCount(String fid) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
