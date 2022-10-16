@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-16T05:38:56.698Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="2kCiPIkeU2fFkJmpxKoi" version="20.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-10-16T05:39:43.726Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="PDsISMTiDI_k1PxKUFmu" version="20.4.1" type="github">
   <diagram id="_2OJ0bwV5LaCm1acZaBd" name="페이지-1">
     <mxGraphModel dx="1163" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -10,13 +10,14 @@
         <mxCell id="XODCjB7SGtbEoyy86aNn-7" value="게시판 서비스" style="shape=umlFrame;whiteSpace=wrap;html=1;width=100;height=30;" vertex="1" parent="1">
           <mxGeometry x="170" y="260" width="550" height="490" as="geometry" />
         </mxCell>
-        <mxCell id="XODCjB7SGtbEoyy86aNn-8" value="회원가입" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+        <mxCell id="XODCjB7SGtbEoyy86aNn-8" value="로그인" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
           <mxGeometry x="200" y="320" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="XODCjB7SGtbEoyy86aNn-9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;" edge="1" source="XODCjB7SGtbEoyy86aNn-8" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="410" y="430" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="XODCjB7SGtbEoyy86aNn-10" value="약관" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="360" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="XODCjB7SGtbEoyy86aNn-11" value="회원가입" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="520" y="320" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
