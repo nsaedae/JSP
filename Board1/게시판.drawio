@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-16T09:16:05.141Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="CYl0CjGWpRQJem09KuLr" version="20.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-10-16T09:17:06.015Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="zylGiBdy1kPOpwLDTUgQ" version="20.4.1" type="github">
   <diagram id="_2OJ0bwV5LaCm1acZaBd" name="페이지-1">
     <mxGraphModel dx="916" dy="668" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -8,7 +8,7 @@
           <mxGeometry x="20" y="310" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="XODCjB7SGtbEoyy86aNn-7" value="게시판 서비스" style="shape=umlFrame;whiteSpace=wrap;html=1;width=100;height=30;" parent="1" vertex="1">
-          <mxGeometry x="170" y="260" width="500" height="430" as="geometry" />
+          <mxGeometry x="170" y="260" width="630" height="430" as="geometry" />
         </mxCell>
         <mxCell id="XODCjB7SGtbEoyy86aNn-28" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="1" source="dD7Ahbwi-f7bV_LsxjtW-1" target="XODCjB7SGtbEoyy86aNn-6" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -30,6 +30,9 @@
         </mxCell>
         <mxCell id="dD7Ahbwi-f7bV_LsxjtW-4" value="회원가입" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="520" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dD7Ahbwi-f7bV_LsxjtW-7" value="ID 중복체크" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="320" width="100" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
